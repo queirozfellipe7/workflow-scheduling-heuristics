@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv('data/raw/results_raw_sintetico.csv')
+df = pd.read_csv('data/raw/results_raw.csv')
 
 schedulers = ['HEFT', 'MOHEFT', 'PEFT', 'IPEFT']
 tasks = ['256', '512', '1024', '2048']
