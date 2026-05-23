@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('data/raw/results_raw_sintetico.csv')
+df = pd.read_csv('data/raw/results_raw.csv')
 
 stats = df.groupby(['heuristica', 'escala']).agg(
     makespan_mean  = ('makespan',     'mean'),
