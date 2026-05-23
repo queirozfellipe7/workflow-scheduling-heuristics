@@ -31,7 +31,7 @@
 │
 ├── data/
 │   ├── raw/                          # Raw CSV results from simulations (never edited)
-│   └── processed/                    # Aggregated stats (mean ± std per heuristic/scale)
+│   └── processed/                    # Aggregated stats.
 │
 ├── scripts/
 │   ├── analysis/
@@ -43,10 +43,10 @@
 │
 ├── results/
 │   ├── figures/                      # Generated plots (PNG, 300 dpi)
-│   └── tables/                       # Generated LaTeX tables
+│   └── tables/                       # Generated table
 │
-├── notebooks/                        # Jupyter notebooks for exploration
-├── docs/                             # Extra notes, references
+├── notebooks/                        # Colab notebooks for exploration
+├── docs/                             # Extra notes
 ├── run_experiments.sh                # Shell script to run all simulations
 ├── .gitignore
 ├── requirements.txt
