@@ -1,0 +1,7518 @@
+{
+  "name": "wf_256_tasks_8_cores",
+  "seed": 1000,
+  "target_tasks": 256,
+  "jobs": [
+    {
+      "id": "exec0_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec0_matrix_A_in"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 0,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec0_compute_gramschmidt",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 10817785206701,
+      "memory": 864834022,
+      "uses": [
+        {
+          "id": "exec0_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec0_matrix_A_out",
+          "type": "output"
+        },
+        {
+          "id": "exec0_matrix_Q",
+          "type": "output"
+        },
+        {
+          "id": "exec0_matrix_R",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "balanced",
+        "block_id": 0,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec0_write_A",
+      "file_writes": [
+        {
+          "id": "exec0_matrix_A_out"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 0,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec0_write_Q",
+      "file_writes": [
+        {
+          "id": "exec0_matrix_Q"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 0,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec0_write_R",
+      "file_writes": [
+        {
+          "id": "exec0_matrix_R"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 0,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec1_read_a",
+      "file_reads": [
+        {
+          "id": "exec1_matrix_a"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 1,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec1_read_b",
+      "file_reads": [
+        {
+          "id": "exec1_matrix_b"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 1,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec1_read_c",
+      "file_reads": [
+        {
+          "id": "exec1_matrix_c"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 1,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec1_compute_d",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 10749030294797,
+      "memory": 11586089294,
+      "uses": [
+        {
+          "id": "exec1_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec1_matrix_b",
+          "type": "input"
+        },
+        {
+          "id": "exec1_matrix_d",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 1,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec1_compute_e",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 10423218995287,
+      "memory": 14921057884,
+      "uses": [
+        {
+          "id": "exec1_matrix_d",
+          "type": "input"
+        },
+        {
+          "id": "exec1_matrix_c",
+          "type": "input"
+        },
+        {
+          "id": "exec1_matrix_e",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 1,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec1_write_e",
+      "file_writes": [
+        {
+          "id": "exec1_matrix_e"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 1,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec2_read_A",
+      "file_reads": [
+        {
+          "id": "exec2_matrix_A"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 2,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec2_read_p",
+      "file_reads": [
+        {
+          "id": "exec2_vector_p"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 2,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec2_read_r",
+      "file_reads": [
+        {
+          "id": "exec2_vector_r"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "balanced",
+        "block_id": 2,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec2_compute_s",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1000000,
+      "uses": [
+        {
+          "id": "exec2_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec2_vector_r",
+          "type": "input"
+        },
+        {
+          "id": "exec2_vector_s",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "balanced",
+        "block_id": 2,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec2_compute_q",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 900000000,
+      "memory": 1551830,
+      "uses": [
+        {
+          "id": "exec2_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec2_vector_p",
+          "type": "input"
+        },
+        {
+          "id": "exec2_vector_q",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 2,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec2_write_s",
+      "file_writes": [
+        {
+          "id": "exec2_vector_s"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "balanced",
+        "block_id": 2,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec2_write_q",
+      "file_writes": [
+        {
+          "id": "exec2_vector_q"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "balanced",
+        "block_id": 2,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec3_read_a",
+      "file_reads": [
+        {
+          "id": "exec3_matrix_a"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "compute-heavy",
+        "block_id": 3,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec3_read_x",
+      "file_reads": [
+        {
+          "id": "exec3_vector_x"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "memory-heavy",
+        "block_id": 3,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec3_compute_tmp1",
+      "runtime": 1.2e-06,
+      "cores": 6,
+      "flops": 23858086313,
+      "memory": 10556365293,
+      "uses": [
+        {
+          "id": "exec3_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec3_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec3_vector_tmp",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "compute-heavy",
+        "block_id": 3,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec3_compute_tmp2",
+      "runtime": 8.499999999999999e-07,
+      "cores": 6,
+      "flops": 15931910502,
+      "memory": 12556349999,
+      "uses": [
+        {
+          "id": "exec3_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec3_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec3_vector_tmp",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "memory-heavy",
+        "block_id": 3,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec3_compute_y1",
+      "runtime": 1e-06,
+      "cores": 6,
+      "flops": 18431485061,
+      "memory": 10825456594,
+      "uses": [
+        {
+          "id": "exec3_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec3_vector_tmp",
+          "type": "input"
+        },
+        {
+          "id": "exec3_vector_y",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "balanced",
+        "block_id": 3,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec3_compute_y2",
+      "runtime": 8.499999999999999e-07,
+      "cores": 6,
+      "flops": 16986364957,
+      "memory": 12834593705,
+      "uses": [
+        {
+          "id": "exec3_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec3_vector_tmp",
+          "type": "input"
+        },
+        {
+          "id": "exec3_vector_y",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "memory-heavy",
+        "block_id": 3,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec3_write_y",
+      "file_writes": [
+        {
+          "id": "exec3_vector_y"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "compute-heavy",
+        "block_id": 3,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec4_read_a",
+      "file_reads": [
+        {
+          "id": "exec4_matrix_a"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "3mm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 4,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec4_read_b",
+      "file_reads": [
+        {
+          "id": "exec4_matrix_b"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "3mm_workflow",
+        "profile": "memory-heavy",
+        "block_id": 4,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec4_read_c",
+      "file_reads": [
+        {
+          "id": "exec4_matrix_c"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "3mm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 4,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec4_read_d",
+      "file_reads": [
+        {
+          "id": "exec4_matrix_d"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "3mm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 4,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec4_compute_e",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 2316481249747,
+      "memory": 9175920275,
+      "uses": [
+        {
+          "id": "exec4_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec4_matrix_b",
+          "type": "input"
+        },
+        {
+          "id": "exec4_matrix_e",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "3mm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 4,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec4_compute_f",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 2010616704654,
+      "memory": 10906377798,
+      "uses": [
+        {
+          "id": "exec4_matrix_c",
+          "type": "input"
+        },
+        {
+          "id": "exec4_matrix_d",
+          "type": "input"
+        },
+        {
+          "id": "exec4_matrix_f",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "3mm_workflow",
+        "profile": "balanced",
+        "block_id": 4,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec4_compute_g",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 2406502223973,
+      "memory": 9887758985,
+      "uses": [
+        {
+          "id": "exec4_matrix_e",
+          "type": "input"
+        },
+        {
+          "id": "exec4_matrix_f",
+          "type": "input"
+        },
+        {
+          "id": "exec4_matrix_g",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "3mm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 4,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec4_write_g",
+      "file_writes": [
+        {
+          "id": "exec4_matrix_g"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "3mm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 4,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec5_read_a",
+      "file_reads": [
+        {
+          "id": "exec5_matrix_a"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "balanced",
+        "block_id": 5,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec5_read_b",
+      "file_reads": [
+        {
+          "id": "exec5_matrix_b"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "balanced",
+        "block_id": 5,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec5_gemm_compute",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 2761489266,
+      "memory": 11346990,
+      "uses": [
+        {
+          "id": "exec5_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec5_matrix_b",
+          "type": "input"
+        },
+        {
+          "id": "exec5_matrix_c",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "memory-heavy",
+        "block_id": 5,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec5_write_c",
+      "file_writes": [
+        {
+          "id": "exec5_matrix_c"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "balanced",
+        "block_id": 5,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec6_read_A",
+      "file_reads": [
+        {
+          "id": "exec6_matrix_A"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 6,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec6_read_p",
+      "file_reads": [
+        {
+          "id": "exec6_vector_p"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "balanced",
+        "block_id": 6,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec6_read_r",
+      "file_reads": [
+        {
+          "id": "exec6_vector_r"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "balanced",
+        "block_id": 6,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec6_compute_s",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1502406444,
+      "memory": 963480,
+      "uses": [
+        {
+          "id": "exec6_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec6_vector_r",
+          "type": "input"
+        },
+        {
+          "id": "exec6_vector_s",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 6,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec6_compute_q",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1000000,
+      "uses": [
+        {
+          "id": "exec6_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec6_vector_p",
+          "type": "input"
+        },
+        {
+          "id": "exec6_vector_q",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "balanced",
+        "block_id": 6,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec6_write_s",
+      "file_writes": [
+        {
+          "id": "exec6_vector_s"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 6,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec6_write_q",
+      "file_writes": [
+        {
+          "id": "exec6_vector_q"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "bicg_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 6,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec7_read_A",
+      "file_reads": [
+        {
+          "id": "exec7_matrix_A"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 7,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec7_read_B",
+      "file_reads": [
+        {
+          "id": "exec7_matrix_B"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 7,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec7_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec7_matrix_C_in"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 7,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec7_compute_C",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 10420094494210,
+      "memory": 652222410,
+      "uses": [
+        {
+          "id": "exec7_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec7_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec7_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec7_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 7,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec7_write_C",
+      "file_writes": [
+        {
+          "id": "exec7_matrix_C_out"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 7,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec8_read_A",
+      "file_reads": [
+        {
+          "id": "exec8_matrix_A"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syrk_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 8,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec8_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec8_matrix_C_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syrk_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 8,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec8_compute_C",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 13530784731613,
+      "memory": 822462899,
+      "uses": [
+        {
+          "id": "exec8_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec8_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec8_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "syrk_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 8,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec8_write_C",
+      "file_writes": [
+        {
+          "id": "exec8_matrix_C_out"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syrk_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 8,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec9_read_A",
+      "file_reads": [
+        {
+          "id": "exec9_matrix_A"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "trmm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 9,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec9_read_B_in",
+      "file_reads": [
+        {
+          "id": "exec9_matrix_B_in"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "trmm_workflow_x10",
+        "profile": "balanced",
+        "block_id": 9,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec9_compute_B",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 11342191835764,
+      "memory": 791510616,
+      "uses": [
+        {
+          "id": "exec9_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec9_matrix_B_in",
+          "type": "input"
+        },
+        {
+          "id": "exec9_matrix_B_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "trmm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 9,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec9_write_B",
+      "file_writes": [
+        {
+          "id": "exec9_matrix_B_out"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "trmm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 9,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec10_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec10_matrix_A_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_read_u1",
+      "file_reads": [
+        {
+          "id": "exec10_vector_u1"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_read_v1",
+      "file_reads": [
+        {
+          "id": "exec10_vector_v1"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_read_u2",
+      "file_reads": [
+        {
+          "id": "exec10_vector_u2"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_read_v2",
+      "file_reads": [
+        {
+          "id": "exec10_vector_v2"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_read_y",
+      "file_reads": [
+        {
+          "id": "exec10_vector_y"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_read_z",
+      "file_reads": [
+        {
+          "id": "exec10_vector_z"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "balanced",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_compute_A",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1951759191,
+      "memory": 2928085036,
+      "uses": [
+        {
+          "id": "exec10_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_u1",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_v1",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_u2",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_v2",
+          "type": "input"
+        },
+        {
+          "id": "exec10_matrix_A_mid",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_compute_x1",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1719166632,
+      "memory": 900000,
+      "uses": [
+        {
+          "id": "exec10_matrix_A_mid",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_y",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_x1",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_compute_x2",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 971850648,
+      "memory": 1398731,
+      "uses": [
+        {
+          "id": "exec10_vector_x1",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_z",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_x2",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_compute_w",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1688422014,
+      "memory": 1060031,
+      "uses": [
+        {
+          "id": "exec10_matrix_A_mid",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_x2",
+          "type": "input"
+        },
+        {
+          "id": "exec10_vector_w",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec10_write_w",
+      "file_writes": [
+        {
+          "id": "exec10_vector_w"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 10,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec11_read_L",
+      "file_reads": [
+        {
+          "id": "exec11_matrix_L"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "trisolv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 11,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec11_read_b",
+      "file_reads": [
+        {
+          "id": "exec11_vector_b"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "trisolv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 11,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec11_compute_solve",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1425403645,
+      "memory": 900000,
+      "uses": [
+        {
+          "id": "exec11_matrix_L",
+          "type": "input"
+        },
+        {
+          "id": "exec11_vector_b",
+          "type": "input"
+        },
+        {
+          "id": "exec11_vector_x",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "trisolv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 11,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec11_write_x",
+      "file_writes": [
+        {
+          "id": "exec11_vector_x"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "trisolv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 11,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec12_read_A",
+      "file_reads": [
+        {
+          "id": "exec12_matrix_A"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "balanced",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec12_read_y1",
+      "file_reads": [
+        {
+          "id": "exec12_vector_y1"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "balanced",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec12_read_y2",
+      "file_reads": [
+        {
+          "id": "exec12_vector_y2"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "balanced",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec12_read_x1_in",
+      "file_reads": [
+        {
+          "id": "exec12_vector_x1_in"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec12_read_x2_in",
+      "file_reads": [
+        {
+          "id": "exec12_vector_x2_in"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec12_compute_x1",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 1035627952,
+      "memory": 1300000,
+      "uses": [
+        {
+          "id": "exec12_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec12_vector_y1",
+          "type": "input"
+        },
+        {
+          "id": "exec12_vector_x1_in",
+          "type": "input"
+        },
+        {
+          "id": "exec12_vector_x1_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec12_compute_x2",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1300000000,
+      "memory": 954388,
+      "uses": [
+        {
+          "id": "exec12_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec12_vector_y2",
+          "type": "input"
+        },
+        {
+          "id": "exec12_vector_x2_in",
+          "type": "input"
+        },
+        {
+          "id": "exec12_vector_x2_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec12_write_x1",
+      "file_writes": [
+        {
+          "id": "exec12_vector_x1_out"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec12_write_x2",
+      "file_writes": [
+        {
+          "id": "exec12_vector_x2_out"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "mvt_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 12,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec13_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec13_matrix_A_in"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_read_u1",
+      "file_reads": [
+        {
+          "id": "exec13_vector_u1"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_read_v1",
+      "file_reads": [
+        {
+          "id": "exec13_vector_v1"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_read_u2",
+      "file_reads": [
+        {
+          "id": "exec13_vector_u2"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_read_v2",
+      "file_reads": [
+        {
+          "id": "exec13_vector_v2"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_read_y",
+      "file_reads": [
+        {
+          "id": "exec13_vector_y"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_read_z",
+      "file_reads": [
+        {
+          "id": "exec13_vector_z"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_compute_A",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 1530801397,
+      "memory": 3695833961,
+      "uses": [
+        {
+          "id": "exec13_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_u1",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_v1",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_u2",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_v2",
+          "type": "input"
+        },
+        {
+          "id": "exec13_matrix_A_mid",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_compute_x1",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1026953342,
+      "memory": 1155421,
+      "uses": [
+        {
+          "id": "exec13_matrix_A_mid",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_y",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_x1",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "balanced",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_compute_x2",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 1046714657,
+      "memory": 1300000,
+      "uses": [
+        {
+          "id": "exec13_vector_x1",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_z",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_x2",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_compute_w",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1500772412,
+      "memory": 900000,
+      "uses": [
+        {
+          "id": "exec13_matrix_A_mid",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_x2",
+          "type": "input"
+        },
+        {
+          "id": "exec13_vector_w",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec13_write_w",
+      "file_writes": [
+        {
+          "id": "exec13_vector_w"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gemver_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 13,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec14_read_a",
+      "file_reads": [
+        {
+          "id": "exec14_matrix_a"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "compute-heavy",
+        "block_id": 14,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec14_read_x",
+      "file_reads": [
+        {
+          "id": "exec14_vector_x"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "compute-heavy",
+        "block_id": 14,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec14_compute_tmp1",
+      "runtime": 1e-06,
+      "cores": 6,
+      "flops": 17175369960,
+      "memory": 9474371580,
+      "uses": [
+        {
+          "id": "exec14_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec14_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec14_vector_tmp",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "balanced",
+        "block_id": 14,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec14_compute_tmp2",
+      "runtime": 1.2e-06,
+      "cores": 6,
+      "flops": 21416474002,
+      "memory": 8540451827,
+      "uses": [
+        {
+          "id": "exec14_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec14_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec14_vector_tmp",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "compute-heavy",
+        "block_id": 14,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec14_compute_y1",
+      "runtime": 1e-06,
+      "cores": 6,
+      "flops": 18023629209,
+      "memory": 11732532011,
+      "uses": [
+        {
+          "id": "exec14_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec14_vector_tmp",
+          "type": "input"
+        },
+        {
+          "id": "exec14_vector_y",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "balanced",
+        "block_id": 14,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec14_compute_y2",
+      "runtime": 8.499999999999999e-07,
+      "cores": 6,
+      "flops": 15990651504,
+      "memory": 15525336335,
+      "uses": [
+        {
+          "id": "exec14_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec14_vector_tmp",
+          "type": "input"
+        },
+        {
+          "id": "exec14_vector_y",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "memory-heavy",
+        "block_id": 14,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec14_write_y",
+      "file_writes": [
+        {
+          "id": "exec14_vector_y"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "atax_workflow",
+        "profile": "balanced",
+        "block_id": 14,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec15_read_data_in",
+      "file_reads": [
+        {
+          "id": "exec15_data_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 15,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec15_compute_mean",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1000000,
+      "uses": [
+        {
+          "id": "exec15_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec15_mean_vec",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 15,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec15_compute_stddev",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 900000000,
+      "memory": 1414570,
+      "uses": [
+        {
+          "id": "exec15_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec15_mean_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec15_stddev_vec",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 15,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec15_normalize_data",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1191854994,
+      "memory": 902187217,
+      "uses": [
+        {
+          "id": "exec15_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec15_mean_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec15_stddev_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec15_data_normalized",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 15,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec15_compute_corr",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 8228138158866,
+      "memory": 1005499392,
+      "uses": [
+        {
+          "id": "exec15_data_normalized",
+          "type": "input"
+        },
+        {
+          "id": "exec15_corr_matrix",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 15,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec15_write_corr",
+      "file_writes": [
+        {
+          "id": "exec15_corr_matrix"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 15,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec16_read_A",
+      "file_reads": [
+        {
+          "id": "exec16_matrix_A"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 16,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec16_read_B",
+      "file_reads": [
+        {
+          "id": "exec16_matrix_B"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 16,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec16_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec16_matrix_C_in"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 16,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec16_compute_C",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 10284744117328,
+      "memory": 943493908,
+      "uses": [
+        {
+          "id": "exec16_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec16_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec16_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec16_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 16,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec16_write_C",
+      "file_writes": [
+        {
+          "id": "exec16_matrix_C_out"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 16,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec17_read_A",
+      "file_reads": [
+        {
+          "id": "exec17_matrix_A"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 17,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec17_read_B",
+      "file_reads": [
+        {
+          "id": "exec17_matrix_B"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 17,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec17_read_x",
+      "file_reads": [
+        {
+          "id": "exec17_vector_x"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 17,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec17_compute_tmp",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1030973077,
+      "memory": 1000000,
+      "uses": [
+        {
+          "id": "exec17_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec17_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec17_vector_tmp",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 17,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec17_compute_y_interim",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1435751762,
+      "memory": 909252,
+      "uses": [
+        {
+          "id": "exec17_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec17_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec17_vector_y_interim",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 17,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec17_combine_y",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 932095704,
+      "memory": 1468587,
+      "uses": [
+        {
+          "id": "exec17_vector_tmp",
+          "type": "input"
+        },
+        {
+          "id": "exec17_vector_y_interim",
+          "type": "input"
+        },
+        {
+          "id": "exec17_vector_y_final",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 17,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec17_write_y",
+      "file_writes": [
+        {
+          "id": "exec17_vector_y_final"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 17,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec18_read_A",
+      "file_reads": [
+        {
+          "id": "exec18_matrix_A"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 18,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec18_read_B",
+      "file_reads": [
+        {
+          "id": "exec18_matrix_B"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 18,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec18_read_x",
+      "file_reads": [
+        {
+          "id": "exec18_vector_x"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 18,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec18_compute_tmp",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1337990347,
+      "memory": 1003631,
+      "uses": [
+        {
+          "id": "exec18_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec18_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec18_vector_tmp",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 18,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec18_compute_y_interim",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1300000000,
+      "memory": 927710,
+      "uses": [
+        {
+          "id": "exec18_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec18_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec18_vector_y_interim",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 18,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec18_combine_y",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 920371878,
+      "memory": 1307952,
+      "uses": [
+        {
+          "id": "exec18_vector_tmp",
+          "type": "input"
+        },
+        {
+          "id": "exec18_vector_y_interim",
+          "type": "input"
+        },
+        {
+          "id": "exec18_vector_y_final",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 18,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec18_write_y",
+      "file_writes": [
+        {
+          "id": "exec18_vector_y_final"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 18,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec19_read_A",
+      "file_reads": [
+        {
+          "id": "exec19_matrix_A"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 19,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec19_read_B",
+      "file_reads": [
+        {
+          "id": "exec19_matrix_B"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 19,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec19_read_x",
+      "file_reads": [
+        {
+          "id": "exec19_vector_x"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 19,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec19_compute_tmp",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1000000,
+      "uses": [
+        {
+          "id": "exec19_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec19_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec19_vector_tmp",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 19,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec19_compute_y_interim",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1300000000,
+      "memory": 900000,
+      "uses": [
+        {
+          "id": "exec19_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec19_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec19_vector_y_interim",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 19,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec19_combine_y",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1552182182,
+      "memory": 900000,
+      "uses": [
+        {
+          "id": "exec19_vector_tmp",
+          "type": "input"
+        },
+        {
+          "id": "exec19_vector_y_interim",
+          "type": "input"
+        },
+        {
+          "id": "exec19_vector_y_final",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 19,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec19_write_y",
+      "file_writes": [
+        {
+          "id": "exec19_vector_y_final"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 19,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec20_read_A",
+      "file_reads": [
+        {
+          "id": "exec20_matrix_A"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 20,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec20_read_B",
+      "file_reads": [
+        {
+          "id": "exec20_matrix_B"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 20,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec20_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec20_matrix_C_in"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 20,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec20_compute_C",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 7347173560380,
+      "memory": 1024938928,
+      "uses": [
+        {
+          "id": "exec20_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec20_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec20_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec20_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 20,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec20_write_C",
+      "file_writes": [
+        {
+          "id": "exec20_matrix_C_out"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 20,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec21_read_A",
+      "file_reads": [
+        {
+          "id": "exec21_matrix_A"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "doitgen_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 21,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec21_read_C4",
+      "file_reads": [
+        {
+          "id": "exec21_matrix_C4"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "doitgen_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 21,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec21_compute_A",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 10541253990293,
+      "memory": 10515189769,
+      "uses": [
+        {
+          "id": "exec21_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec21_matrix_C4",
+          "type": "input"
+        },
+        {
+          "id": "exec21_matrix_A_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "doitgen_workflow_x10",
+        "profile": "balanced",
+        "block_id": 21,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec21_write_A",
+      "file_writes": [
+        {
+          "id": "exec21_matrix_A_out"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "doitgen_workflow_x10",
+        "profile": "balanced",
+        "block_id": 21,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec22_read_L",
+      "file_reads": [
+        {
+          "id": "exec22_matrix_L"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "trisolv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 22,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec22_read_b",
+      "file_reads": [
+        {
+          "id": "exec22_vector_b"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "trisolv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 22,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec22_compute_solve",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1000000,
+      "uses": [
+        {
+          "id": "exec22_matrix_L",
+          "type": "input"
+        },
+        {
+          "id": "exec22_vector_b",
+          "type": "input"
+        },
+        {
+          "id": "exec22_vector_x",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "trisolv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 22,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec22_write_x",
+      "file_writes": [
+        {
+          "id": "exec22_vector_x"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "trisolv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 22,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec23_read_data_in",
+      "file_reads": [
+        {
+          "id": "exec23_data_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 23,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec23_compute_mean",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1127981,
+      "uses": [
+        {
+          "id": "exec23_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec23_mean_vec",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 23,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec23_compute_stddev",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1000000,
+      "uses": [
+        {
+          "id": "exec23_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec23_mean_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec23_stddev_vec",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 23,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec23_normalize_data",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1051141989,
+      "uses": [
+        {
+          "id": "exec23_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec23_mean_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec23_stddev_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec23_data_normalized",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 23,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec23_compute_corr",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 8643768390389,
+      "memory": 1056977306,
+      "uses": [
+        {
+          "id": "exec23_data_normalized",
+          "type": "input"
+        },
+        {
+          "id": "exec23_corr_matrix",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 23,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec23_write_corr",
+      "file_writes": [
+        {
+          "id": "exec23_corr_matrix"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 23,
+        "lane": 7
+      }
+    },
+    {
+      "id": "exec24_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec24_matrix_A_in"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 24,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec24_compute_gramschmidt",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 10972993961082,
+      "memory": 817011776,
+      "uses": [
+        {
+          "id": "exec24_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec24_matrix_A_out",
+          "type": "output"
+        },
+        {
+          "id": "exec24_matrix_Q",
+          "type": "output"
+        },
+        {
+          "id": "exec24_matrix_R",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 24,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec24_write_A",
+      "file_writes": [
+        {
+          "id": "exec24_matrix_A_out"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "balanced",
+        "block_id": 24,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec24_write_Q",
+      "file_writes": [
+        {
+          "id": "exec24_matrix_Q"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 24,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec24_write_R",
+      "file_writes": [
+        {
+          "id": "exec24_matrix_R"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 24,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec25_read_data_in",
+      "file_reads": [
+        {
+          "id": "exec25_data_in"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "balanced",
+        "block_id": 25,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec25_compute_mean",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1489893068,
+      "memory": 900000,
+      "uses": [
+        {
+          "id": "exec25_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec25_mean_vec",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 25,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec25_center_data",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1066902532,
+      "memory": 1069596125,
+      "uses": [
+        {
+          "id": "exec25_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec25_mean_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec25_data_centered",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "balanced",
+        "block_id": 25,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec25_compute_cov",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 13395305301692,
+      "memory": 1041503564,
+      "uses": [
+        {
+          "id": "exec25_data_centered",
+          "type": "input"
+        },
+        {
+          "id": "exec25_cov_matrix",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 25,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec25_write_cov",
+      "file_writes": [
+        {
+          "id": "exec25_cov_matrix"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 25,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec26_read_data_in",
+      "file_reads": [
+        {
+          "id": "exec26_data_in"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 26,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec26_compute_mean",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1300000000,
+      "memory": 1063121,
+      "uses": [
+        {
+          "id": "exec26_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec26_mean_vec",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 26,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec26_compute_stddev",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 900000000,
+      "memory": 1516907,
+      "uses": [
+        {
+          "id": "exec26_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec26_mean_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec26_stddev_vec",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 26,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec26_normalize_data",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 921419399,
+      "uses": [
+        {
+          "id": "exec26_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec26_mean_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec26_stddev_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec26_data_normalized",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "balanced",
+        "block_id": 26,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec26_compute_corr",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 7213918701058,
+      "memory": 1796183763,
+      "uses": [
+        {
+          "id": "exec26_data_normalized",
+          "type": "input"
+        },
+        {
+          "id": "exec26_corr_matrix",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 26,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec26_write_corr",
+      "file_writes": [
+        {
+          "id": "exec26_corr_matrix"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "correlation_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 26,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec27_read_a",
+      "file_reads": [
+        {
+          "id": "exec27_matrix_a"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "balanced",
+        "block_id": 27,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec27_read_b",
+      "file_reads": [
+        {
+          "id": "exec27_matrix_b"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 27,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec27_read_c",
+      "file_reads": [
+        {
+          "id": "exec27_matrix_c"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 27,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec27_compute_d",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 10195840541660,
+      "memory": 10625594659,
+      "uses": [
+        {
+          "id": "exec27_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec27_matrix_b",
+          "type": "input"
+        },
+        {
+          "id": "exec27_matrix_d",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "balanced",
+        "block_id": 27,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec27_compute_e",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 11506195437854,
+      "memory": 11447788173,
+      "uses": [
+        {
+          "id": "exec27_matrix_d",
+          "type": "input"
+        },
+        {
+          "id": "exec27_matrix_c",
+          "type": "input"
+        },
+        {
+          "id": "exec27_matrix_e",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "balanced",
+        "block_id": 27,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec27_write_e",
+      "file_writes": [
+        {
+          "id": "exec27_matrix_e"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 27,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec28_read_a",
+      "file_reads": [
+        {
+          "id": "exec28_matrix_a"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "balanced",
+        "block_id": 28,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec28_read_b",
+      "file_reads": [
+        {
+          "id": "exec28_matrix_b"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "balanced",
+        "block_id": 28,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec28_gemm_compute",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 3596843061,
+      "memory": 9249231,
+      "uses": [
+        {
+          "id": "exec28_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec28_matrix_b",
+          "type": "input"
+        },
+        {
+          "id": "exec28_matrix_c",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 28,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec28_write_c",
+      "file_writes": [
+        {
+          "id": "exec28_matrix_c"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "balanced",
+        "block_id": 28,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec29_read_A",
+      "file_reads": [
+        {
+          "id": "exec29_matrix_A"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 29,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec29_read_B",
+      "file_reads": [
+        {
+          "id": "exec29_matrix_B"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 29,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec29_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec29_matrix_C_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 29,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec29_compute_C",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 11993490670560,
+      "memory": 705250750,
+      "uses": [
+        {
+          "id": "exec29_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec29_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec29_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec29_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 29,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec29_write_C",
+      "file_writes": [
+        {
+          "id": "exec29_matrix_C_out"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 29,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec30_read_A",
+      "file_reads": [
+        {
+          "id": "exec30_matrix_A"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 30,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec30_read_B",
+      "file_reads": [
+        {
+          "id": "exec30_matrix_B"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 30,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec30_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec30_matrix_C_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 30,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec30_compute_C",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 9095527964214,
+      "memory": 989365964,
+      "uses": [
+        {
+          "id": "exec30_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec30_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec30_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec30_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "balanced",
+        "block_id": 30,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec30_write_C",
+      "file_writes": [
+        {
+          "id": "exec30_matrix_C_out"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 30,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec31_read_A",
+      "file_reads": [
+        {
+          "id": "exec31_matrix_A"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 31,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec31_read_B",
+      "file_reads": [
+        {
+          "id": "exec31_matrix_B"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 31,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec31_read_x",
+      "file_reads": [
+        {
+          "id": "exec31_vector_x"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "balanced",
+        "block_id": 31,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec31_compute_tmp",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 900000000,
+      "memory": 1410750,
+      "uses": [
+        {
+          "id": "exec31_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec31_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec31_vector_tmp",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 31,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec31_compute_y_interim",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 900000000,
+      "memory": 1392404,
+      "uses": [
+        {
+          "id": "exec31_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec31_vector_x",
+          "type": "input"
+        },
+        {
+          "id": "exec31_vector_y_interim",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 31,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec31_combine_y",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 900000000,
+      "memory": 1300000,
+      "uses": [
+        {
+          "id": "exec31_vector_tmp",
+          "type": "input"
+        },
+        {
+          "id": "exec31_vector_y_interim",
+          "type": "input"
+        },
+        {
+          "id": "exec31_vector_y_final",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 31,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec31_write_y",
+      "file_writes": [
+        {
+          "id": "exec31_vector_y_final"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gesummv_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 31,
+        "lane": 15
+      }
+    },
+    {
+      "id": "exec32_read_A",
+      "file_reads": [
+        {
+          "id": "exec32_matrix_A"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 32,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec32_read_B",
+      "file_reads": [
+        {
+          "id": "exec32_matrix_B"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "balanced",
+        "block_id": 32,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec32_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec32_matrix_C_in"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 32,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec32_compute_C",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 9608018360915,
+      "memory": 1124726505,
+      "uses": [
+        {
+          "id": "exec32_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec32_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec32_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec32_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 32,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec32_write_C",
+      "file_writes": [
+        {
+          "id": "exec32_matrix_C_out"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "symm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 32,
+        "lane": 0
+      }
+    },
+    {
+      "id": "exec33_read_A",
+      "file_reads": [
+        {
+          "id": "exec33_matrix_A"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 33,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec33_read_B",
+      "file_reads": [
+        {
+          "id": "exec33_matrix_B"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 33,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec33_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec33_matrix_C_in"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 33,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec33_compute_C",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 8193978968740,
+      "memory": 1007175718,
+      "uses": [
+        {
+          "id": "exec33_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec33_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec33_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec33_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 33,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec33_write_C",
+      "file_writes": [
+        {
+          "id": "exec33_matrix_C_out"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 33,
+        "lane": 1
+      }
+    },
+    {
+      "id": "exec34_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec34_matrix_A_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "ludcmp_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 34,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec34_read_b",
+      "file_reads": [
+        {
+          "id": "exec34_vector_b"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "ludcmp_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 34,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec34_compute_lu",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 841703258329,
+      "memory": 736928545,
+      "uses": [
+        {
+          "id": "exec34_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec34_matrix_A_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "ludcmp_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 34,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec34_forward_substitution",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 900000000,
+      "memory": 1300000,
+      "uses": [
+        {
+          "id": "exec34_matrix_A_out",
+          "type": "input"
+        },
+        {
+          "id": "exec34_vector_b",
+          "type": "input"
+        },
+        {
+          "id": "exec34_vector_y",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "ludcmp_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 34,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec34_backward_substitution",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 1000000000,
+      "memory": 1146552,
+      "uses": [
+        {
+          "id": "exec34_matrix_A_out",
+          "type": "input"
+        },
+        {
+          "id": "exec34_vector_y",
+          "type": "input"
+        },
+        {
+          "id": "exec34_vector_x",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "ludcmp_workflow_x10",
+        "profile": "balanced",
+        "block_id": 34,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec34_write_x",
+      "file_writes": [
+        {
+          "id": "exec34_vector_x"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "ludcmp_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 34,
+        "lane": 2
+      }
+    },
+    {
+      "id": "exec35_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec35_matrix_A_in"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "cholesky_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 35,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec35_compute_cholesky",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 390472502232,
+      "memory": 588352183,
+      "uses": [
+        {
+          "id": "exec35_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec35_matrix_A_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "cholesky_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 35,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec35_write_A_out",
+      "file_writes": [
+        {
+          "id": "exec35_matrix_A_out"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "cholesky_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 35,
+        "lane": 3
+      }
+    },
+    {
+      "id": "exec36_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec36_matrix_A_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 36,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec36_compute_gramschmidt",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 9426794487462,
+      "memory": 1467236422,
+      "uses": [
+        {
+          "id": "exec36_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec36_matrix_A_out",
+          "type": "output"
+        },
+        {
+          "id": "exec36_matrix_Q",
+          "type": "output"
+        },
+        {
+          "id": "exec36_matrix_R",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 36,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec36_write_A",
+      "file_writes": [
+        {
+          "id": "exec36_matrix_A_out"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "balanced",
+        "block_id": 36,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec36_write_Q",
+      "file_writes": [
+        {
+          "id": "exec36_matrix_Q"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "balanced",
+        "block_id": 36,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec36_write_R",
+      "file_writes": [
+        {
+          "id": "exec36_matrix_R"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gramschmidt_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 36,
+        "lane": 4
+      }
+    },
+    {
+      "id": "exec37_read_A",
+      "file_reads": [
+        {
+          "id": "exec37_matrix_A"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 37,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec37_read_B",
+      "file_reads": [
+        {
+          "id": "exec37_matrix_B"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 37,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec37_read_C_in",
+      "file_reads": [
+        {
+          "id": "exec37_matrix_C_in"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 37,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec37_compute_C",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 8725896360211,
+      "memory": 847162445,
+      "uses": [
+        {
+          "id": "exec37_matrix_A",
+          "type": "input"
+        },
+        {
+          "id": "exec37_matrix_B",
+          "type": "input"
+        },
+        {
+          "id": "exec37_matrix_C_in",
+          "type": "input"
+        },
+        {
+          "id": "exec37_matrix_C_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "balanced",
+        "block_id": 37,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec37_write_C",
+      "file_writes": [
+        {
+          "id": "exec37_matrix_C_out"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "syr2k_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 37,
+        "lane": 5
+      }
+    },
+    {
+      "id": "exec38_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec38_matrix_A_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "lu_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 38,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec38_compute_lu",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 969374738631,
+      "memory": 819437101,
+      "uses": [
+        {
+          "id": "exec38_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec38_matrix_A_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "lu_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 38,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec38_write_A_out",
+      "file_writes": [
+        {
+          "id": "exec38_matrix_A_out"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "lu_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 38,
+        "lane": 6
+      }
+    },
+    {
+      "id": "exec39_read_a",
+      "file_reads": [
+        {
+          "id": "exec39_matrix_a"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "balanced",
+        "block_id": 39,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec39_read_b",
+      "file_reads": [
+        {
+          "id": "exec39_matrix_b"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 39,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec39_read_c",
+      "file_reads": [
+        {
+          "id": "exec39_matrix_c"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 39,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec39_compute_d",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 13562202272143,
+      "memory": 7942761602,
+      "uses": [
+        {
+          "id": "exec39_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec39_matrix_b",
+          "type": "input"
+        },
+        {
+          "id": "exec39_matrix_d",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 39,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec39_compute_e",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 10985001413820,
+      "memory": 10135157646,
+      "uses": [
+        {
+          "id": "exec39_matrix_d",
+          "type": "input"
+        },
+        {
+          "id": "exec39_matrix_c",
+          "type": "input"
+        },
+        {
+          "id": "exec39_matrix_e",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 39,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec39_write_e",
+      "file_writes": [
+        {
+          "id": "exec39_matrix_e"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "2mm_workflow_x10",
+        "profile": "balanced",
+        "block_id": 39,
+        "lane": 8
+      }
+    },
+    {
+      "id": "exec40_read_a",
+      "file_reads": [
+        {
+          "id": "exec40_matrix_a"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 40,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec40_read_b",
+      "file_reads": [
+        {
+          "id": "exec40_matrix_b"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "balanced",
+        "block_id": 40,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec40_gemm_compute",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 4030739166,
+      "memory": 8113342,
+      "uses": [
+        {
+          "id": "exec40_matrix_a",
+          "type": "input"
+        },
+        {
+          "id": "exec40_matrix_b",
+          "type": "input"
+        },
+        {
+          "id": "exec40_matrix_c",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "balanced",
+        "block_id": 40,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec40_write_c",
+      "file_writes": [
+        {
+          "id": "exec40_matrix_c"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "gemm_workflow",
+        "profile": "compute-heavy",
+        "block_id": 40,
+        "lane": 9
+      }
+    },
+    {
+      "id": "exec41_read_data_in",
+      "file_reads": [
+        {
+          "id": "exec41_data_in"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 41,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec41_compute_mean",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1300000000,
+      "memory": 900000,
+      "uses": [
+        {
+          "id": "exec41_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec41_mean_vec",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 41,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec41_center_data",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 1345195317,
+      "memory": 856139513,
+      "uses": [
+        {
+          "id": "exec41_data_in",
+          "type": "input"
+        },
+        {
+          "id": "exec41_mean_vec",
+          "type": "input"
+        },
+        {
+          "id": "exec41_data_centered",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 41,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec41_compute_cov",
+      "runtime": 1.2e-06,
+      "cores": 12,
+      "flops": 13307008445543,
+      "memory": 879418822,
+      "uses": [
+        {
+          "id": "exec41_data_centered",
+          "type": "input"
+        },
+        {
+          "id": "exec41_cov_matrix",
+          "type": "output"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 41,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec41_write_cov",
+      "file_writes": [
+        {
+          "id": "exec41_cov_matrix"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "covariance_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 41,
+        "lane": 10
+      }
+    },
+    {
+      "id": "exec42_read_u_initial",
+      "file_reads": [
+        {
+          "id": "exec42_matrix_u_initial"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "adi_workflow_x10_simplified",
+        "profile": "memory-heavy",
+        "block_id": 42,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec42_all_column_sweeps",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 8304565025056,
+      "memory": 669880142,
+      "uses": [
+        {
+          "id": "exec42_matrix_u_initial",
+          "type": "input"
+        },
+        {
+          "id": "exec42_matrix_v_interim",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "adi_workflow_x10_simplified",
+        "profile": "balanced",
+        "block_id": 42,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec42_all_row_sweeps",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 10604516936057,
+      "memory": 1078262395,
+      "uses": [
+        {
+          "id": "exec42_matrix_v_interim",
+          "type": "input"
+        },
+        {
+          "id": "exec42_matrix_u_final",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "adi_workflow_x10_simplified",
+        "profile": "memory-heavy",
+        "block_id": 42,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec42_write_u_final",
+      "file_writes": [
+        {
+          "id": "exec42_matrix_u_final"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "adi_workflow_x10_simplified",
+        "profile": "compute-heavy",
+        "block_id": 42,
+        "lane": 11
+      }
+    },
+    {
+      "id": "exec43_read_u_initial",
+      "file_reads": [
+        {
+          "id": "exec43_matrix_u_initial"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "adi_workflow_x10_simplified",
+        "profile": "balanced",
+        "block_id": 43,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec43_all_column_sweeps",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 10336423579303,
+      "memory": 839681160,
+      "uses": [
+        {
+          "id": "exec43_matrix_u_initial",
+          "type": "input"
+        },
+        {
+          "id": "exec43_matrix_v_interim",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "adi_workflow_x10_simplified",
+        "profile": "memory-heavy",
+        "block_id": 43,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec43_all_row_sweeps",
+      "runtime": 1e-06,
+      "cores": 12,
+      "flops": 8105911040332,
+      "memory": 885369113,
+      "uses": [
+        {
+          "id": "exec43_matrix_v_interim",
+          "type": "input"
+        },
+        {
+          "id": "exec43_matrix_u_final",
+          "type": "output"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "adi_workflow_x10_simplified",
+        "profile": "balanced",
+        "block_id": 43,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec43_write_u_final",
+      "file_writes": [
+        {
+          "id": "exec43_matrix_u_final"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "adi_workflow_x10_simplified",
+        "profile": "balanced",
+        "block_id": 43,
+        "lane": 12
+      }
+    },
+    {
+      "id": "exec44_read_A_in",
+      "file_reads": [
+        {
+          "id": "exec44_matrix_A_in"
+        }
+      ],
+      "_profile": "balanced",
+      "_meta": {
+        "kernel": "cholesky_workflow_x10",
+        "profile": "balanced",
+        "block_id": 44,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec44_compute_cholesky",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 322897147572,
+      "memory": 1202750396,
+      "uses": [
+        {
+          "id": "exec44_matrix_A_in",
+          "type": "input"
+        },
+        {
+          "id": "exec44_matrix_A_out",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "cholesky_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 44,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec44_write_A_out",
+      "file_writes": [
+        {
+          "id": "exec44_matrix_A_out"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "cholesky_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 44,
+        "lane": 13
+      }
+    },
+    {
+      "id": "exec45_read_sequence",
+      "file_reads": [
+        {
+          "id": "exec45_sequence"
+        }
+      ],
+      "_profile": "compute-heavy",
+      "_meta": {
+        "kernel": "nussinov_workflow_x10",
+        "profile": "compute-heavy",
+        "block_id": 45,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec45_compute_nussinov",
+      "runtime": 8.499999999999999e-07,
+      "cores": 12,
+      "flops": 174364016752,
+      "memory": 1110386897,
+      "uses": [
+        {
+          "id": "exec45_sequence",
+          "type": "input"
+        },
+        {
+          "id": "exec45_score_table",
+          "type": "output"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "nussinov_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 45,
+        "lane": 14
+      }
+    },
+    {
+      "id": "exec45_write_table",
+      "file_writes": [
+        {
+          "id": "exec45_score_table"
+        }
+      ],
+      "_profile": "memory-heavy",
+      "_meta": {
+        "kernel": "nussinov_workflow_x10",
+        "profile": "memory-heavy",
+        "block_id": 45,
+        "lane": 14
+      }
+    }
+  ],
+  "files": [
+    {
+      "id": "exec0_matrix_A_in",
+      "size": 1025301650
+    },
+    {
+      "id": "exec0_matrix_A_out",
+      "size": 843226011
+    },
+    {
+      "id": "exec0_matrix_Q",
+      "size": 968921101
+    },
+    {
+      "id": "exec0_matrix_R",
+      "size": 1134885976
+    },
+    {
+      "id": "exec1_matrix_a",
+      "size": 933178128
+    },
+    {
+      "id": "exec1_matrix_b",
+      "size": 1048080423
+    },
+    {
+      "id": "exec1_matrix_c",
+      "size": 985589877
+    },
+    {
+      "id": "exec1_matrix_d",
+      "size": 1224497731
+    },
+    {
+      "id": "exec1_matrix_e",
+      "size": 1227025002
+    },
+    {
+      "id": "exec2_matrix_A",
+      "size": 1179515422
+    },
+    {
+      "id": "exec2_vector_p",
+      "size": 182588
+    },
+    {
+      "id": "exec2_vector_r",
+      "size": 154320
+    },
+    {
+      "id": "exec2_vector_s",
+      "size": 171639
+    },
+    {
+      "id": "exec2_vector_q",
+      "size": 184367
+    },
+    {
+      "id": "exec3_matrix_a",
+      "size": 1242863812
+    },
+    {
+      "id": "exec3_vector_x",
+      "size": 39027210
+    },
+    {
+      "id": "exec3_vector_tmp",
+      "size": 24762162
+    },
+    {
+      "id": "exec3_vector_y",
+      "size": 37766014
+    },
+    {
+      "id": "exec4_matrix_a",
+      "size": 792690934
+    },
+    {
+      "id": "exec4_matrix_b",
+      "size": 889746378
+    },
+    {
+      "id": "exec4_matrix_c",
+      "size": 862401564
+    },
+    {
+      "id": "exec4_matrix_d",
+      "size": 885687472
+    },
+    {
+      "id": "exec4_matrix_e",
+      "size": 758066358
+    },
+    {
+      "id": "exec4_matrix_f",
+      "size": 759926457
+    },
+    {
+      "id": "exec4_matrix_g",
+      "size": 1125811525
+    },
+    {
+      "id": "exec5_matrix_a",
+      "size": 3198173
+    },
+    {
+      "id": "exec5_matrix_b",
+      "size": 3815448
+    },
+    {
+      "id": "exec5_matrix_c",
+      "size": 2521828
+    },
+    {
+      "id": "exec6_matrix_A",
+      "size": 802679299
+    },
+    {
+      "id": "exec6_vector_p",
+      "size": 181068
+    },
+    {
+      "id": "exec6_vector_r",
+      "size": 150495
+    },
+    {
+      "id": "exec6_vector_s",
+      "size": 139068
+    },
+    {
+      "id": "exec6_vector_q",
+      "size": 145344
+    },
+    {
+      "id": "exec7_matrix_A",
+      "size": 792230139
+    },
+    {
+      "id": "exec7_matrix_B",
+      "size": 1186515715
+    },
+    {
+      "id": "exec7_matrix_C_in",
+      "size": 848206001
+    },
+    {
+      "id": "exec7_matrix_C_out",
+      "size": 890064056
+    },
+    {
+      "id": "exec8_matrix_A",
+      "size": 870168036
+    },
+    {
+      "id": "exec8_matrix_C_in",
+      "size": 963966910
+    },
+    {
+      "id": "exec8_matrix_C_out",
+      "size": 976304429
+    },
+    {
+      "id": "exec9_matrix_A",
+      "size": 649858000
+    },
+    {
+      "id": "exec9_matrix_B_in",
+      "size": 845565139
+    },
+    {
+      "id": "exec9_matrix_B_out",
+      "size": 782072118
+    },
+    {
+      "id": "exec10_matrix_A_in",
+      "size": 962303210
+    },
+    {
+      "id": "exec10_matrix_A_mid",
+      "size": 1166714810
+    },
+    {
+      "id": "exec10_vector_u1",
+      "size": 197309
+    },
+    {
+      "id": "exec10_vector_v1",
+      "size": 174424
+    },
+    {
+      "id": "exec10_vector_u2",
+      "size": 127059
+    },
+    {
+      "id": "exec10_vector_v2",
+      "size": 173017
+    },
+    {
+      "id": "exec10_vector_y",
+      "size": 161272
+    },
+    {
+      "id": "exec10_vector_z",
+      "size": 137126
+    },
+    {
+      "id": "exec10_vector_x1",
+      "size": 149885
+    },
+    {
+      "id": "exec10_vector_x2",
+      "size": 182336
+    },
+    {
+      "id": "exec10_vector_w",
+      "size": 173284
+    },
+    {
+      "id": "exec11_matrix_L",
+      "size": 714422840
+    },
+    {
+      "id": "exec11_vector_b",
+      "size": 69821
+    },
+    {
+      "id": "exec11_vector_x",
+      "size": 94621
+    },
+    {
+      "id": "exec12_matrix_A",
+      "size": 1217427853
+    },
+    {
+      "id": "exec12_vector_y1",
+      "size": 177468
+    },
+    {
+      "id": "exec12_vector_y2",
+      "size": 139325
+    },
+    {
+      "id": "exec12_vector_x1_in",
+      "size": 170958
+    },
+    {
+      "id": "exec12_vector_x2_in",
+      "size": 170872
+    },
+    {
+      "id": "exec12_vector_x1_out",
+      "size": 170008
+    },
+    {
+      "id": "exec12_vector_x2_out",
+      "size": 139892
+    },
+    {
+      "id": "exec13_matrix_A_in",
+      "size": 795507967
+    },
+    {
+      "id": "exec13_matrix_A_mid",
+      "size": 972602510
+    },
+    {
+      "id": "exec13_vector_u1",
+      "size": 159019
+    },
+    {
+      "id": "exec13_vector_v1",
+      "size": 122397
+    },
+    {
+      "id": "exec13_vector_u2",
+      "size": 159025
+    },
+    {
+      "id": "exec13_vector_v2",
+      "size": 192946
+    },
+    {
+      "id": "exec13_vector_y",
+      "size": 132758
+    },
+    {
+      "id": "exec13_vector_z",
+      "size": 150657
+    },
+    {
+      "id": "exec13_vector_x1",
+      "size": 137650
+    },
+    {
+      "id": "exec13_vector_x2",
+      "size": 161291
+    },
+    {
+      "id": "exec13_vector_w",
+      "size": 177231
+    },
+    {
+      "id": "exec14_matrix_a",
+      "size": 1112189415
+    },
+    {
+      "id": "exec14_vector_x",
+      "size": 24583447
+    },
+    {
+      "id": "exec14_vector_tmp",
+      "size": 26157638
+    },
+    {
+      "id": "exec14_vector_y",
+      "size": 24794013
+    },
+    {
+      "id": "exec15_data_in",
+      "size": 806302994
+    },
+    {
+      "id": "exec15_data_normalized",
+      "size": 1125205353
+    },
+    {
+      "id": "exec15_mean_vec",
+      "size": 106708
+    },
+    {
+      "id": "exec15_stddev_vec",
+      "size": 109674
+    },
+    {
+      "id": "exec15_corr_matrix",
+      "size": 864759774
+    },
+    {
+      "id": "exec16_matrix_A",
+      "size": 900630168
+    },
+    {
+      "id": "exec16_matrix_B",
+      "size": 757801243
+    },
+    {
+      "id": "exec16_matrix_C_in",
+      "size": 744599988
+    },
+    {
+      "id": "exec16_matrix_C_out",
+      "size": 850018080
+    },
+    {
+      "id": "exec17_matrix_A",
+      "size": 1176336174
+    },
+    {
+      "id": "exec17_matrix_B",
+      "size": 955146868
+    },
+    {
+      "id": "exec17_vector_x",
+      "size": 121702
+    },
+    {
+      "id": "exec17_vector_tmp",
+      "size": 104707
+    },
+    {
+      "id": "exec17_vector_y_interim",
+      "size": 129386
+    },
+    {
+      "id": "exec17_vector_y_final",
+      "size": 124825
+    },
+    {
+      "id": "exec18_matrix_A",
+      "size": 1208121846
+    },
+    {
+      "id": "exec18_matrix_B",
+      "size": 899101628
+    },
+    {
+      "id": "exec18_vector_x",
+      "size": 118968
+    },
+    {
+      "id": "exec18_vector_tmp",
+      "size": 88318
+    },
+    {
+      "id": "exec18_vector_y_interim",
+      "size": 95672
+    },
+    {
+      "id": "exec18_vector_y_final",
+      "size": 121253
+    },
+    {
+      "id": "exec19_matrix_A",
+      "size": 951565089
+    },
+    {
+      "id": "exec19_matrix_B",
+      "size": 1243981965
+    },
+    {
+      "id": "exec19_vector_x",
+      "size": 102254
+    },
+    {
+      "id": "exec19_vector_tmp",
+      "size": 100111
+    },
+    {
+      "id": "exec19_vector_y_interim",
+      "size": 104130
+    },
+    {
+      "id": "exec19_vector_y_final",
+      "size": 103981
+    },
+    {
+      "id": "exec20_matrix_A",
+      "size": 956124970
+    },
+    {
+      "id": "exec20_matrix_B",
+      "size": 947775463
+    },
+    {
+      "id": "exec20_matrix_C_in",
+      "size": 664754147
+    },
+    {
+      "id": "exec20_matrix_C_out",
+      "size": 679457592
+    },
+    {
+      "id": "exec21_matrix_A",
+      "size": 994778036
+    },
+    {
+      "id": "exec21_matrix_C4",
+      "size": 17082835
+    },
+    {
+      "id": "exec21_matrix_A_out",
+      "size": 1098394497
+    },
+    {
+      "id": "exec22_matrix_L",
+      "size": 827900285
+    },
+    {
+      "id": "exec22_vector_b",
+      "size": 88739
+    },
+    {
+      "id": "exec22_vector_x",
+      "size": 62846
+    },
+    {
+      "id": "exec23_data_in",
+      "size": 946863723
+    },
+    {
+      "id": "exec23_data_normalized",
+      "size": 1176510536
+    },
+    {
+      "id": "exec23_mean_vec",
+      "size": 76507
+    },
+    {
+      "id": "exec23_stddev_vec",
+      "size": 118047
+    },
+    {
+      "id": "exec23_corr_matrix",
+      "size": 1223170619
+    },
+    {
+      "id": "exec24_matrix_A_in",
+      "size": 1017558060
+    },
+    {
+      "id": "exec24_matrix_A_out",
+      "size": 1020596824
+    },
+    {
+      "id": "exec24_matrix_Q",
+      "size": 807187717
+    },
+    {
+      "id": "exec24_matrix_R",
+      "size": 993591049
+    },
+    {
+      "id": "exec25_data_in",
+      "size": 923843694
+    },
+    {
+      "id": "exec25_data_centered",
+      "size": 846348392
+    },
+    {
+      "id": "exec25_mean_vec",
+      "size": 108014
+    },
+    {
+      "id": "exec25_cov_matrix",
+      "size": 1230638926
+    },
+    {
+      "id": "exec26_data_in",
+      "size": 1047435230
+    },
+    {
+      "id": "exec26_data_normalized",
+      "size": 950335989
+    },
+    {
+      "id": "exec26_mean_vec",
+      "size": 89775
+    },
+    {
+      "id": "exec26_stddev_vec",
+      "size": 87226
+    },
+    {
+      "id": "exec26_corr_matrix",
+      "size": 1137136788
+    },
+    {
+      "id": "exec27_matrix_a",
+      "size": 761107605
+    },
+    {
+      "id": "exec27_matrix_b",
+      "size": 916294891
+    },
+    {
+      "id": "exec27_matrix_c",
+      "size": 864662573
+    },
+    {
+      "id": "exec27_matrix_d",
+      "size": 1004701038
+    },
+    {
+      "id": "exec27_matrix_e",
+      "size": 1192808800
+    },
+    {
+      "id": "exec28_matrix_a",
+      "size": 3440016
+    },
+    {
+      "id": "exec28_matrix_b",
+      "size": 3845906
+    },
+    {
+      "id": "exec28_matrix_c",
+      "size": 3474293
+    },
+    {
+      "id": "exec29_matrix_A",
+      "size": 938712005
+    },
+    {
+      "id": "exec29_matrix_B",
+      "size": 829190507
+    },
+    {
+      "id": "exec29_matrix_C_in",
+      "size": 888216173
+    },
+    {
+      "id": "exec29_matrix_C_out",
+      "size": 825460256
+    },
+    {
+      "id": "exec30_matrix_A",
+      "size": 905591231
+    },
+    {
+      "id": "exec30_matrix_B",
+      "size": 1020424187
+    },
+    {
+      "id": "exec30_matrix_C_in",
+      "size": 1125720358
+    },
+    {
+      "id": "exec30_matrix_C_out",
+      "size": 1133199439
+    },
+    {
+      "id": "exec31_matrix_A",
+      "size": 842042580
+    },
+    {
+      "id": "exec31_matrix_B",
+      "size": 902258523
+    },
+    {
+      "id": "exec31_vector_x",
+      "size": 115747
+    },
+    {
+      "id": "exec31_vector_tmp",
+      "size": 113881
+    },
+    {
+      "id": "exec31_vector_y_interim",
+      "size": 119203
+    },
+    {
+      "id": "exec31_vector_y_final",
+      "size": 125649
+    },
+    {
+      "id": "exec32_matrix_A",
+      "size": 689502566
+    },
+    {
+      "id": "exec32_matrix_B",
+      "size": 882013915
+    },
+    {
+      "id": "exec32_matrix_C_in",
+      "size": 1072887845
+    },
+    {
+      "id": "exec32_matrix_C_out",
+      "size": 884139904
+    },
+    {
+      "id": "exec33_matrix_A",
+      "size": 853710181
+    },
+    {
+      "id": "exec33_matrix_B",
+      "size": 1125299748
+    },
+    {
+      "id": "exec33_matrix_C_in",
+      "size": 882935930
+    },
+    {
+      "id": "exec33_matrix_C_out",
+      "size": 927590409
+    },
+    {
+      "id": "exec34_matrix_A_in",
+      "size": 888021057
+    },
+    {
+      "id": "exec34_matrix_A_out",
+      "size": 780801924
+    },
+    {
+      "id": "exec34_vector_b",
+      "size": 78152
+    },
+    {
+      "id": "exec34_vector_y",
+      "size": 86208
+    },
+    {
+      "id": "exec34_vector_x",
+      "size": 86751
+    },
+    {
+      "id": "exec35_matrix_A_in",
+      "size": 794218780
+    },
+    {
+      "id": "exec35_matrix_A_out",
+      "size": 889623995
+    },
+    {
+      "id": "exec36_matrix_A_in",
+      "size": 1193923666
+    },
+    {
+      "id": "exec36_matrix_A_out",
+      "size": 1110898917
+    },
+    {
+      "id": "exec36_matrix_Q",
+      "size": 755728392
+    },
+    {
+      "id": "exec36_matrix_R",
+      "size": 850690245
+    },
+    {
+      "id": "exec37_matrix_A",
+      "size": 1009666397
+    },
+    {
+      "id": "exec37_matrix_B",
+      "size": 1086444398
+    },
+    {
+      "id": "exec37_matrix_C_in",
+      "size": 983621614
+    },
+    {
+      "id": "exec37_matrix_C_out",
+      "size": 802756488
+    },
+    {
+      "id": "exec38_matrix_A_in",
+      "size": 911164104
+    },
+    {
+      "id": "exec38_matrix_A_out",
+      "size": 744877726
+    },
+    {
+      "id": "exec39_matrix_a",
+      "size": 916806027
+    },
+    {
+      "id": "exec39_matrix_b",
+      "size": 1102953175
+    },
+    {
+      "id": "exec39_matrix_c",
+      "size": 1170379329
+    },
+    {
+      "id": "exec39_matrix_d",
+      "size": 886493450
+    },
+    {
+      "id": "exec39_matrix_e",
+      "size": 992074788
+    },
+    {
+      "id": "exec40_matrix_a",
+      "size": 3803278
+    },
+    {
+      "id": "exec40_matrix_b",
+      "size": 3966141
+    },
+    {
+      "id": "exec40_matrix_c",
+      "size": 3095433
+    },
+    {
+      "id": "exec41_data_in",
+      "size": 1164358000
+    },
+    {
+      "id": "exec41_data_centered",
+      "size": 1145315135
+    },
+    {
+      "id": "exec41_mean_vec",
+      "size": 75208
+    },
+    {
+      "id": "exec41_cov_matrix",
+      "size": 1087944659
+    },
+    {
+      "id": "exec42_matrix_u_initial",
+      "size": 687779839
+    },
+    {
+      "id": "exec42_matrix_v_interim",
+      "size": 772967241
+    },
+    {
+      "id": "exec42_matrix_u_final",
+      "size": 689631575
+    },
+    {
+      "id": "exec43_matrix_u_initial",
+      "size": 789257686
+    },
+    {
+      "id": "exec43_matrix_v_interim",
+      "size": 652584912
+    },
+    {
+      "id": "exec43_matrix_u_final",
+      "size": 614747751
+    },
+    {
+      "id": "exec44_matrix_A_in",
+      "size": 690404035
+    },
+    {
+      "id": "exec44_matrix_A_out",
+      "size": 786631336
+    },
+    {
+      "id": "exec45_sequence",
+      "size": 10000
+    },
+    {
+      "id": "exec45_score_table",
+      "size": 603052012
+    }
+  ],
+  "dependencies": [
+    {
+      "parents": [
+        "exec0_read_A_in"
+      ],
+      "children": [
+        "exec0_compute_gramschmidt"
+      ]
+    },
+    {
+      "parents": [
+        "exec0_compute_gramschmidt"
+      ],
+      "children": [
+        "exec0_write_A",
+        "exec0_write_Q",
+        "exec0_write_R"
+      ]
+    },
+    {
+      "parents": [
+        "exec1_read_a"
+      ],
+      "children": [
+        "exec1_compute_d"
+      ]
+    },
+    {
+      "parents": [
+        "exec1_read_b"
+      ],
+      "children": [
+        "exec1_compute_d"
+      ]
+    },
+    {
+      "parents": [
+        "exec1_read_c"
+      ],
+      "children": [
+        "exec1_compute_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec1_compute_d"
+      ],
+      "children": [
+        "exec1_compute_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec1_compute_e"
+      ],
+      "children": [
+        "exec1_write_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec2_read_A"
+      ],
+      "children": [
+        "exec2_compute_s",
+        "exec2_compute_q"
+      ]
+    },
+    {
+      "parents": [
+        "exec2_read_r"
+      ],
+      "children": [
+        "exec2_compute_s"
+      ]
+    },
+    {
+      "parents": [
+        "exec2_read_p"
+      ],
+      "children": [
+        "exec2_compute_q"
+      ]
+    },
+    {
+      "parents": [
+        "exec2_compute_s"
+      ],
+      "children": [
+        "exec2_write_s"
+      ]
+    },
+    {
+      "parents": [
+        "exec2_compute_q"
+      ],
+      "children": [
+        "exec2_write_q"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_read_a"
+      ],
+      "children": [
+        "exec3_compute_tmp1"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_read_a"
+      ],
+      "children": [
+        "exec3_compute_tmp2"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_read_x"
+      ],
+      "children": [
+        "exec3_compute_tmp1"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_read_x"
+      ],
+      "children": [
+        "exec3_compute_tmp2"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_compute_tmp1"
+      ],
+      "children": [
+        "exec3_compute_y1"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_compute_tmp1"
+      ],
+      "children": [
+        "exec3_compute_y2"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_compute_tmp2"
+      ],
+      "children": [
+        "exec3_compute_y1"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_compute_tmp2"
+      ],
+      "children": [
+        "exec3_compute_y2"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_compute_y1"
+      ],
+      "children": [
+        "exec3_write_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_compute_y2"
+      ],
+      "children": [
+        "exec3_write_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec4_read_a"
+      ],
+      "children": [
+        "exec4_compute_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec4_read_b"
+      ],
+      "children": [
+        "exec4_compute_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec4_read_c"
+      ],
+      "children": [
+        "exec4_compute_f"
+      ]
+    },
+    {
+      "parents": [
+        "exec4_read_d"
+      ],
+      "children": [
+        "exec4_compute_f"
+      ]
+    },
+    {
+      "parents": [
+        "exec4_compute_e"
+      ],
+      "children": [
+        "exec4_compute_g"
+      ]
+    },
+    {
+      "parents": [
+        "exec4_compute_f"
+      ],
+      "children": [
+        "exec4_compute_g"
+      ]
+    },
+    {
+      "parents": [
+        "exec4_compute_g"
+      ],
+      "children": [
+        "exec4_write_g"
+      ]
+    },
+    {
+      "parents": [
+        "exec5_read_a"
+      ],
+      "children": [
+        "exec5_gemm_compute"
+      ]
+    },
+    {
+      "parents": [
+        "exec5_read_b"
+      ],
+      "children": [
+        "exec5_gemm_compute"
+      ]
+    },
+    {
+      "parents": [
+        "exec5_gemm_compute"
+      ],
+      "children": [
+        "exec5_write_c"
+      ]
+    },
+    {
+      "parents": [
+        "exec6_read_A"
+      ],
+      "children": [
+        "exec6_compute_s",
+        "exec6_compute_q"
+      ]
+    },
+    {
+      "parents": [
+        "exec6_read_r"
+      ],
+      "children": [
+        "exec6_compute_s"
+      ]
+    },
+    {
+      "parents": [
+        "exec6_read_p"
+      ],
+      "children": [
+        "exec6_compute_q"
+      ]
+    },
+    {
+      "parents": [
+        "exec6_compute_s"
+      ],
+      "children": [
+        "exec6_write_s"
+      ]
+    },
+    {
+      "parents": [
+        "exec6_compute_q"
+      ],
+      "children": [
+        "exec6_write_q"
+      ]
+    },
+    {
+      "parents": [
+        "exec7_read_A",
+        "exec7_read_B",
+        "exec7_read_C_in"
+      ],
+      "children": [
+        "exec7_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec7_compute_C"
+      ],
+      "children": [
+        "exec7_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec8_read_A",
+        "exec8_read_C_in"
+      ],
+      "children": [
+        "exec8_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec8_compute_C"
+      ],
+      "children": [
+        "exec8_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec9_read_A",
+        "exec9_read_B_in"
+      ],
+      "children": [
+        "exec9_compute_B"
+      ]
+    },
+    {
+      "parents": [
+        "exec9_compute_B"
+      ],
+      "children": [
+        "exec9_write_B"
+      ]
+    },
+    {
+      "parents": [
+        "exec10_read_A_in",
+        "exec10_read_u1",
+        "exec10_read_v1",
+        "exec10_read_u2",
+        "exec10_read_v2"
+      ],
+      "children": [
+        "exec10_compute_A"
+      ]
+    },
+    {
+      "parents": [
+        "exec10_compute_A",
+        "exec10_read_y"
+      ],
+      "children": [
+        "exec10_compute_x1"
+      ]
+    },
+    {
+      "parents": [
+        "exec10_compute_x1",
+        "exec10_read_z"
+      ],
+      "children": [
+        "exec10_compute_x2"
+      ]
+    },
+    {
+      "parents": [
+        "exec10_compute_A",
+        "exec10_compute_x2"
+      ],
+      "children": [
+        "exec10_compute_w"
+      ]
+    },
+    {
+      "parents": [
+        "exec10_compute_w"
+      ],
+      "children": [
+        "exec10_write_w"
+      ]
+    },
+    {
+      "parents": [
+        "exec11_read_L",
+        "exec11_read_b"
+      ],
+      "children": [
+        "exec11_compute_solve"
+      ]
+    },
+    {
+      "parents": [
+        "exec11_compute_solve"
+      ],
+      "children": [
+        "exec11_write_x"
+      ]
+    },
+    {
+      "parents": [
+        "exec12_read_A",
+        "exec12_read_y1",
+        "exec12_read_x1_in"
+      ],
+      "children": [
+        "exec12_compute_x1"
+      ]
+    },
+    {
+      "parents": [
+        "exec12_read_A",
+        "exec12_read_y2",
+        "exec12_read_x2_in"
+      ],
+      "children": [
+        "exec12_compute_x2"
+      ]
+    },
+    {
+      "parents": [
+        "exec12_compute_x1"
+      ],
+      "children": [
+        "exec12_write_x1"
+      ]
+    },
+    {
+      "parents": [
+        "exec12_compute_x2"
+      ],
+      "children": [
+        "exec12_write_x2"
+      ]
+    },
+    {
+      "parents": [
+        "exec13_read_A_in",
+        "exec13_read_u1",
+        "exec13_read_v1",
+        "exec13_read_u2",
+        "exec13_read_v2"
+      ],
+      "children": [
+        "exec13_compute_A"
+      ]
+    },
+    {
+      "parents": [
+        "exec13_compute_A",
+        "exec13_read_y"
+      ],
+      "children": [
+        "exec13_compute_x1"
+      ]
+    },
+    {
+      "parents": [
+        "exec13_compute_x1",
+        "exec13_read_z"
+      ],
+      "children": [
+        "exec13_compute_x2"
+      ]
+    },
+    {
+      "parents": [
+        "exec13_compute_A",
+        "exec13_compute_x2"
+      ],
+      "children": [
+        "exec13_compute_w"
+      ]
+    },
+    {
+      "parents": [
+        "exec13_compute_w"
+      ],
+      "children": [
+        "exec13_write_w"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_read_a"
+      ],
+      "children": [
+        "exec14_compute_tmp1"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_read_a"
+      ],
+      "children": [
+        "exec14_compute_tmp2"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_read_x"
+      ],
+      "children": [
+        "exec14_compute_tmp1"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_read_x"
+      ],
+      "children": [
+        "exec14_compute_tmp2"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_compute_tmp1"
+      ],
+      "children": [
+        "exec14_compute_y1"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_compute_tmp1"
+      ],
+      "children": [
+        "exec14_compute_y2"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_compute_tmp2"
+      ],
+      "children": [
+        "exec14_compute_y1"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_compute_tmp2"
+      ],
+      "children": [
+        "exec14_compute_y2"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_compute_y1"
+      ],
+      "children": [
+        "exec14_write_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_compute_y2"
+      ],
+      "children": [
+        "exec14_write_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec15_read_data_in"
+      ],
+      "children": [
+        "exec15_compute_mean",
+        "exec15_compute_stddev",
+        "exec15_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec15_compute_mean"
+      ],
+      "children": [
+        "exec15_compute_stddev",
+        "exec15_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec15_compute_stddev"
+      ],
+      "children": [
+        "exec15_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec15_normalize_data"
+      ],
+      "children": [
+        "exec15_compute_corr"
+      ]
+    },
+    {
+      "parents": [
+        "exec15_compute_corr"
+      ],
+      "children": [
+        "exec15_write_corr"
+      ]
+    },
+    {
+      "parents": [
+        "exec0_compute_gramschmidt"
+      ],
+      "children": [
+        "exec16_read_A",
+        "exec16_read_B",
+        "exec16_read_C_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec16_read_A",
+        "exec16_read_B",
+        "exec16_read_C_in"
+      ],
+      "children": [
+        "exec16_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec16_compute_C"
+      ],
+      "children": [
+        "exec16_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec1_compute_e"
+      ],
+      "children": [
+        "exec17_read_A",
+        "exec17_read_B",
+        "exec17_read_x"
+      ]
+    },
+    {
+      "parents": [
+        "exec17_read_A",
+        "exec17_read_x"
+      ],
+      "children": [
+        "exec17_compute_tmp"
+      ]
+    },
+    {
+      "parents": [
+        "exec17_read_B",
+        "exec17_read_x"
+      ],
+      "children": [
+        "exec17_compute_y_interim"
+      ]
+    },
+    {
+      "parents": [
+        "exec17_compute_tmp",
+        "exec17_compute_y_interim"
+      ],
+      "children": [
+        "exec17_combine_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec17_combine_y"
+      ],
+      "children": [
+        "exec17_write_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec2_compute_s"
+      ],
+      "children": [
+        "exec18_read_A",
+        "exec18_read_B",
+        "exec18_read_x"
+      ]
+    },
+    {
+      "parents": [
+        "exec18_read_A",
+        "exec18_read_x"
+      ],
+      "children": [
+        "exec18_compute_tmp"
+      ]
+    },
+    {
+      "parents": [
+        "exec18_read_B",
+        "exec18_read_x"
+      ],
+      "children": [
+        "exec18_compute_y_interim"
+      ]
+    },
+    {
+      "parents": [
+        "exec18_compute_tmp",
+        "exec18_compute_y_interim"
+      ],
+      "children": [
+        "exec18_combine_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec18_combine_y"
+      ],
+      "children": [
+        "exec18_write_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec3_compute_y1"
+      ],
+      "children": [
+        "exec19_read_A",
+        "exec19_read_B",
+        "exec19_read_x"
+      ]
+    },
+    {
+      "parents": [
+        "exec19_read_A",
+        "exec19_read_x"
+      ],
+      "children": [
+        "exec19_compute_tmp"
+      ]
+    },
+    {
+      "parents": [
+        "exec19_read_B",
+        "exec19_read_x"
+      ],
+      "children": [
+        "exec19_compute_y_interim"
+      ]
+    },
+    {
+      "parents": [
+        "exec19_compute_tmp",
+        "exec19_compute_y_interim"
+      ],
+      "children": [
+        "exec19_combine_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec19_combine_y"
+      ],
+      "children": [
+        "exec19_write_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec4_compute_g"
+      ],
+      "children": [
+        "exec20_read_A",
+        "exec20_read_B",
+        "exec20_read_C_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec20_read_A",
+        "exec20_read_B",
+        "exec20_read_C_in"
+      ],
+      "children": [
+        "exec20_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec20_compute_C"
+      ],
+      "children": [
+        "exec20_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec5_gemm_compute"
+      ],
+      "children": [
+        "exec21_read_A",
+        "exec21_read_C4"
+      ]
+    },
+    {
+      "parents": [
+        "exec21_read_A",
+        "exec21_read_C4"
+      ],
+      "children": [
+        "exec21_compute_A"
+      ]
+    },
+    {
+      "parents": [
+        "exec21_compute_A"
+      ],
+      "children": [
+        "exec21_write_A"
+      ]
+    },
+    {
+      "parents": [
+        "exec6_compute_s"
+      ],
+      "children": [
+        "exec22_read_L",
+        "exec22_read_b"
+      ]
+    },
+    {
+      "parents": [
+        "exec22_read_L",
+        "exec22_read_b"
+      ],
+      "children": [
+        "exec22_compute_solve"
+      ]
+    },
+    {
+      "parents": [
+        "exec22_compute_solve"
+      ],
+      "children": [
+        "exec22_write_x"
+      ]
+    },
+    {
+      "parents": [
+        "exec7_compute_C"
+      ],
+      "children": [
+        "exec23_read_data_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec23_read_data_in"
+      ],
+      "children": [
+        "exec23_compute_mean",
+        "exec23_compute_stddev",
+        "exec23_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec23_compute_mean"
+      ],
+      "children": [
+        "exec23_compute_stddev",
+        "exec23_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec23_compute_stddev"
+      ],
+      "children": [
+        "exec23_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec23_normalize_data"
+      ],
+      "children": [
+        "exec23_compute_corr"
+      ]
+    },
+    {
+      "parents": [
+        "exec23_compute_corr"
+      ],
+      "children": [
+        "exec23_write_corr"
+      ]
+    },
+    {
+      "parents": [
+        "exec8_compute_C"
+      ],
+      "children": [
+        "exec24_read_A_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec24_read_A_in"
+      ],
+      "children": [
+        "exec24_compute_gramschmidt"
+      ]
+    },
+    {
+      "parents": [
+        "exec24_compute_gramschmidt"
+      ],
+      "children": [
+        "exec24_write_A",
+        "exec24_write_Q",
+        "exec24_write_R"
+      ]
+    },
+    {
+      "parents": [
+        "exec9_compute_B"
+      ],
+      "children": [
+        "exec25_read_data_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec25_read_data_in"
+      ],
+      "children": [
+        "exec25_compute_mean",
+        "exec25_center_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec25_compute_mean"
+      ],
+      "children": [
+        "exec25_center_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec25_center_data"
+      ],
+      "children": [
+        "exec25_compute_cov"
+      ]
+    },
+    {
+      "parents": [
+        "exec25_compute_cov"
+      ],
+      "children": [
+        "exec25_write_cov"
+      ]
+    },
+    {
+      "parents": [
+        "exec10_compute_w"
+      ],
+      "children": [
+        "exec26_read_data_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec26_read_data_in"
+      ],
+      "children": [
+        "exec26_compute_mean",
+        "exec26_compute_stddev",
+        "exec26_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec26_compute_mean"
+      ],
+      "children": [
+        "exec26_compute_stddev",
+        "exec26_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec26_compute_stddev"
+      ],
+      "children": [
+        "exec26_normalize_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec26_normalize_data"
+      ],
+      "children": [
+        "exec26_compute_corr"
+      ]
+    },
+    {
+      "parents": [
+        "exec26_compute_corr"
+      ],
+      "children": [
+        "exec26_write_corr"
+      ]
+    },
+    {
+      "parents": [
+        "exec11_compute_solve"
+      ],
+      "children": [
+        "exec27_read_a",
+        "exec27_read_b",
+        "exec27_read_c"
+      ]
+    },
+    {
+      "parents": [
+        "exec27_read_a"
+      ],
+      "children": [
+        "exec27_compute_d"
+      ]
+    },
+    {
+      "parents": [
+        "exec27_read_b"
+      ],
+      "children": [
+        "exec27_compute_d"
+      ]
+    },
+    {
+      "parents": [
+        "exec27_read_c"
+      ],
+      "children": [
+        "exec27_compute_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec27_compute_d"
+      ],
+      "children": [
+        "exec27_compute_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec27_compute_e"
+      ],
+      "children": [
+        "exec27_write_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec12_compute_x1"
+      ],
+      "children": [
+        "exec28_read_a",
+        "exec28_read_b"
+      ]
+    },
+    {
+      "parents": [
+        "exec28_read_a"
+      ],
+      "children": [
+        "exec28_gemm_compute"
+      ]
+    },
+    {
+      "parents": [
+        "exec28_read_b"
+      ],
+      "children": [
+        "exec28_gemm_compute"
+      ]
+    },
+    {
+      "parents": [
+        "exec28_gemm_compute"
+      ],
+      "children": [
+        "exec28_write_c"
+      ]
+    },
+    {
+      "parents": [
+        "exec13_compute_w"
+      ],
+      "children": [
+        "exec29_read_A",
+        "exec29_read_B",
+        "exec29_read_C_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec29_read_A",
+        "exec29_read_B",
+        "exec29_read_C_in"
+      ],
+      "children": [
+        "exec29_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec29_compute_C"
+      ],
+      "children": [
+        "exec29_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec14_compute_y1"
+      ],
+      "children": [
+        "exec30_read_A",
+        "exec30_read_B",
+        "exec30_read_C_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec30_read_A",
+        "exec30_read_B",
+        "exec30_read_C_in"
+      ],
+      "children": [
+        "exec30_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec30_compute_C"
+      ],
+      "children": [
+        "exec30_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec15_compute_corr"
+      ],
+      "children": [
+        "exec31_read_A",
+        "exec31_read_B",
+        "exec31_read_x"
+      ]
+    },
+    {
+      "parents": [
+        "exec31_read_A",
+        "exec31_read_x"
+      ],
+      "children": [
+        "exec31_compute_tmp"
+      ]
+    },
+    {
+      "parents": [
+        "exec31_read_B",
+        "exec31_read_x"
+      ],
+      "children": [
+        "exec31_compute_y_interim"
+      ]
+    },
+    {
+      "parents": [
+        "exec31_compute_tmp",
+        "exec31_compute_y_interim"
+      ],
+      "children": [
+        "exec31_combine_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec31_combine_y"
+      ],
+      "children": [
+        "exec31_write_y"
+      ]
+    },
+    {
+      "parents": [
+        "exec16_compute_C"
+      ],
+      "children": [
+        "exec32_read_A",
+        "exec32_read_B",
+        "exec32_read_C_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec32_read_A",
+        "exec32_read_B",
+        "exec32_read_C_in"
+      ],
+      "children": [
+        "exec32_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec32_compute_C"
+      ],
+      "children": [
+        "exec32_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec17_combine_y"
+      ],
+      "children": [
+        "exec33_read_A",
+        "exec33_read_B",
+        "exec33_read_C_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec33_read_A",
+        "exec33_read_B",
+        "exec33_read_C_in"
+      ],
+      "children": [
+        "exec33_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec33_compute_C"
+      ],
+      "children": [
+        "exec33_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec18_combine_y"
+      ],
+      "children": [
+        "exec34_read_A_in",
+        "exec34_read_b"
+      ]
+    },
+    {
+      "parents": [
+        "exec34_read_A_in"
+      ],
+      "children": [
+        "exec34_compute_lu"
+      ]
+    },
+    {
+      "parents": [
+        "exec34_compute_lu",
+        "exec34_read_b"
+      ],
+      "children": [
+        "exec34_forward_substitution"
+      ]
+    },
+    {
+      "parents": [
+        "exec34_forward_substitution"
+      ],
+      "children": [
+        "exec34_backward_substitution"
+      ]
+    },
+    {
+      "parents": [
+        "exec34_backward_substitution"
+      ],
+      "children": [
+        "exec34_write_x"
+      ]
+    },
+    {
+      "parents": [
+        "exec19_combine_y"
+      ],
+      "children": [
+        "exec35_read_A_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec35_read_A_in"
+      ],
+      "children": [
+        "exec35_compute_cholesky"
+      ]
+    },
+    {
+      "parents": [
+        "exec35_compute_cholesky"
+      ],
+      "children": [
+        "exec35_write_A_out"
+      ]
+    },
+    {
+      "parents": [
+        "exec20_compute_C"
+      ],
+      "children": [
+        "exec36_read_A_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec36_read_A_in"
+      ],
+      "children": [
+        "exec36_compute_gramschmidt"
+      ]
+    },
+    {
+      "parents": [
+        "exec36_compute_gramschmidt"
+      ],
+      "children": [
+        "exec36_write_A",
+        "exec36_write_Q",
+        "exec36_write_R"
+      ]
+    },
+    {
+      "parents": [
+        "exec21_compute_A"
+      ],
+      "children": [
+        "exec37_read_A",
+        "exec37_read_B",
+        "exec37_read_C_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec37_read_A",
+        "exec37_read_B",
+        "exec37_read_C_in"
+      ],
+      "children": [
+        "exec37_compute_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec37_compute_C"
+      ],
+      "children": [
+        "exec37_write_C"
+      ]
+    },
+    {
+      "parents": [
+        "exec22_compute_solve"
+      ],
+      "children": [
+        "exec38_read_A_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec38_read_A_in"
+      ],
+      "children": [
+        "exec38_compute_lu"
+      ]
+    },
+    {
+      "parents": [
+        "exec38_compute_lu"
+      ],
+      "children": [
+        "exec38_write_A_out"
+      ]
+    },
+    {
+      "parents": [
+        "exec24_compute_gramschmidt"
+      ],
+      "children": [
+        "exec39_read_a",
+        "exec39_read_b",
+        "exec39_read_c"
+      ]
+    },
+    {
+      "parents": [
+        "exec39_read_a"
+      ],
+      "children": [
+        "exec39_compute_d"
+      ]
+    },
+    {
+      "parents": [
+        "exec39_read_b"
+      ],
+      "children": [
+        "exec39_compute_d"
+      ]
+    },
+    {
+      "parents": [
+        "exec39_read_c"
+      ],
+      "children": [
+        "exec39_compute_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec39_compute_d"
+      ],
+      "children": [
+        "exec39_compute_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec39_compute_e"
+      ],
+      "children": [
+        "exec39_write_e"
+      ]
+    },
+    {
+      "parents": [
+        "exec25_compute_cov"
+      ],
+      "children": [
+        "exec40_read_a",
+        "exec40_read_b"
+      ]
+    },
+    {
+      "parents": [
+        "exec40_read_a"
+      ],
+      "children": [
+        "exec40_gemm_compute"
+      ]
+    },
+    {
+      "parents": [
+        "exec40_read_b"
+      ],
+      "children": [
+        "exec40_gemm_compute"
+      ]
+    },
+    {
+      "parents": [
+        "exec40_gemm_compute"
+      ],
+      "children": [
+        "exec40_write_c"
+      ]
+    },
+    {
+      "parents": [
+        "exec26_compute_corr"
+      ],
+      "children": [
+        "exec41_read_data_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec41_read_data_in"
+      ],
+      "children": [
+        "exec41_compute_mean",
+        "exec41_center_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec41_compute_mean"
+      ],
+      "children": [
+        "exec41_center_data"
+      ]
+    },
+    {
+      "parents": [
+        "exec41_center_data"
+      ],
+      "children": [
+        "exec41_compute_cov"
+      ]
+    },
+    {
+      "parents": [
+        "exec41_compute_cov"
+      ],
+      "children": [
+        "exec41_write_cov"
+      ]
+    },
+    {
+      "parents": [
+        "exec27_compute_e"
+      ],
+      "children": [
+        "exec42_read_u_initial"
+      ]
+    },
+    {
+      "parents": [
+        "exec42_read_u_initial"
+      ],
+      "children": [
+        "exec42_all_column_sweeps"
+      ]
+    },
+    {
+      "parents": [
+        "exec42_all_column_sweeps"
+      ],
+      "children": [
+        "exec42_all_row_sweeps"
+      ]
+    },
+    {
+      "parents": [
+        "exec42_all_row_sweeps"
+      ],
+      "children": [
+        "exec42_write_u_final"
+      ]
+    },
+    {
+      "parents": [
+        "exec28_gemm_compute"
+      ],
+      "children": [
+        "exec43_read_u_initial"
+      ]
+    },
+    {
+      "parents": [
+        "exec43_read_u_initial"
+      ],
+      "children": [
+        "exec43_all_column_sweeps"
+      ]
+    },
+    {
+      "parents": [
+        "exec43_all_column_sweeps"
+      ],
+      "children": [
+        "exec43_all_row_sweeps"
+      ]
+    },
+    {
+      "parents": [
+        "exec43_all_row_sweeps"
+      ],
+      "children": [
+        "exec43_write_u_final"
+      ]
+    },
+    {
+      "parents": [
+        "exec29_compute_C"
+      ],
+      "children": [
+        "exec44_read_A_in"
+      ]
+    },
+    {
+      "parents": [
+        "exec44_read_A_in"
+      ],
+      "children": [
+        "exec44_compute_cholesky"
+      ]
+    },
+    {
+      "parents": [
+        "exec44_compute_cholesky"
+      ],
+      "children": [
+        "exec44_write_A_out"
+      ]
+    },
+    {
+      "parents": [
+        "exec30_compute_C"
+      ],
+      "children": [
+        "exec45_read_sequence"
+      ]
+    },
+    {
+      "parents": [
+        "exec45_read_sequence"
+      ],
+      "children": [
+        "exec45_compute_nussinov"
+      ]
+    },
+    {
+      "parents": [
+        "exec45_compute_nussinov"
+      ],
+      "children": [
+        "exec45_write_table"
+      ]
+    }
+  ],
+  "_stats": {
+    "total_jobs": 256,
+    "blocks_used": 46,
+    "parallelism": 16,
+    "platform_size": 8
+  }
+}

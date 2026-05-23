@@ -1,0 +1,45 @@
+{
+  "name": "gemm_workflow",
+  "jobs": [
+    {
+      "id": "read_a",
+      "file_reads": [
+        {"id": "matrix_a"}
+      ]
+    },
+    {
+      "id": "read_b",
+      "file_reads": [
+        {"id": "matrix_b"}
+      ]
+    },
+    {
+      "id": "gemm_compute",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 3435973837,
+      "memory": 10066330,
+      "uses": [
+        {"id": "matrix_a", "type": "input"},
+        {"id": "matrix_b", "type": "input"},
+        {"id": "matrix_c", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_c",
+      "file_writes": [
+        {"id": "matrix_c"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_a", "size": 3355443},
+    {"id": "matrix_b", "size": 3355443},
+    {"id": "matrix_c", "size": 3355443}
+  ],
+  "dependencies": [
+    {"parents": ["read_a"], "children": ["gemm_compute"]},
+    {"parents": ["read_b"], "children": ["gemm_compute"]},
+    {"parents": ["gemm_compute"], "children": ["write_c"]}
+  ]
+}

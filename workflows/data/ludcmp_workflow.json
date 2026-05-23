@@ -1,0 +1,71 @@
+{
+  "name": "ludcmp_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_A_in",
+      "file_reads": [
+        {"id": "matrix_A_in"}
+      ]
+    },
+    {
+      "id": "read_b",
+      "file_reads": [
+        {"id": "vector_b"}
+      ]
+    },
+    {
+      "id": "compute_lu",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 666666666667,
+      "memory": 800000000,
+      "uses": [
+        {"id": "matrix_A_in", "type": "input"},
+        {"id": "matrix_A_out", "type": "output"}
+      ]
+    },
+    {
+      "id": "forward_substitution",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 100000000,
+      "memory": 80000,
+      "uses": [
+        {"id": "matrix_A_out", "type": "input"},
+        {"id": "vector_b", "type": "input"},
+        {"id": "vector_y", "type": "output"}
+      ]
+    },
+    {
+      "id": "backward_substitution",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 100000000,
+      "memory": 80000,
+      "uses": [
+        {"id": "matrix_A_out", "type": "input"},
+        {"id": "vector_y", "type": "input"},
+        {"id": "vector_x", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_x",
+      "file_writes": [
+        {"id": "vector_x"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A_in", "size": 800000000},
+    {"id": "matrix_A_out", "size": 800000000},
+    {"id": "vector_b", "size": 80000},
+    {"id": "vector_y", "size": 80000},
+    {"id": "vector_x", "size": 80000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A_in"], "children": ["compute_lu"]},
+    {"parents": ["compute_lu", "read_b"], "children": ["forward_substitution"]},
+    {"parents": ["forward_substitution"], "children": ["backward_substitution"]},
+    {"parents": ["backward_substitution"], "children": ["write_x"]}
+  ]
+}

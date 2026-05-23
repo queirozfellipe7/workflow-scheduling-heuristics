@@ -1,0 +1,44 @@
+{
+  "name": "doitgen_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_A",
+      "file_reads": [
+        {"id": "matrix_A"}
+      ]
+    },
+    {
+      "id": "read_C4",
+      "file_reads": [
+        {"id": "matrix_C4"}
+      ]
+    },
+    {
+      "id": "compute_A",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 10752000000000000,
+      "memory": 26880000000,
+      "uses": [
+        {"id": "matrix_A", "type": "input"},
+        {"id": "matrix_C4", "type": "input"},
+        {"id": "matrix_A_out", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_A",
+      "file_writes": [
+        {"id": "matrix_A_out"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A", "size": 26880000000},
+    {"id": "matrix_C4", "size": 20480000},
+    {"id": "matrix_A_out", "size": 26880000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A", "read_C4"], "children": ["compute_A"]},
+    {"parents": ["compute_A"], "children": ["write_A"]}
+  ]
+}

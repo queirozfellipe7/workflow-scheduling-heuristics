@@ -1,0 +1,78 @@
+{
+  "name": "correlation_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_data_in",
+      "file_reads": [
+        {"id": "data_in"}
+      ]
+    },
+    {
+      "id": "compute_mean",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 120000000,
+      "memory": 96000,
+      "uses": [
+        {"id": "data_in", "type": "input"},
+        {"id": "mean_vec", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_stddev",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 360000000,
+      "memory": 96000,
+      "uses": [
+        {"id": "data_in", "type": "input"},
+        {"id": "mean_vec", "type": "input"},
+        {"id": "stddev_vec", "type": "output"}
+      ]
+    },
+    {
+      "id": "normalize_data",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 480000000,
+      "memory": 960000000,
+      "uses": [
+        {"id": "data_in", "type": "input"},
+        {"id": "mean_vec", "type": "input"},
+        {"id": "stddev_vec", "type": "input"},
+        {"id": "data_normalized", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_corr",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 1440000000000000,
+      "memory": 1152000000,
+      "uses": [
+        {"id": "data_normalized", "type": "input"},
+        {"id": "corr_matrix", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_corr",
+      "file_writes": [
+        {"id": "corr_matrix"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "data_in", "size": 960000000},
+    {"id": "data_normalized", "size": 960000000},
+    {"id": "mean_vec", "size": 96000},
+    {"id": "stddev_vec", "size": 96000},
+    {"id": "corr_matrix", "size": 1152000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_data_in"], "children": ["compute_mean", "compute_stddev", "normalize_data"]},
+    {"parents": ["compute_mean"], "children": ["compute_stddev", "normalize_data"]},
+    {"parents": ["compute_stddev"], "children": ["normalize_data"]},
+    {"parents": ["normalize_data"], "children": ["compute_corr"]},
+    {"parents": ["compute_corr"], "children": ["write_corr"]}
+  ]
+}

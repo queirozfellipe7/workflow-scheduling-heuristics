@@ -1,0 +1,49 @@
+{
+  "name": "adi_workflow_x10_simplified",
+  "jobs": [
+    {
+      "id": "read_u_initial",
+      "file_reads": [
+        {"id": "matrix_u_initial"}
+      ]
+    },
+    {
+      "id": "all_column_sweeps",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 650000000000000,
+      "memory": 800000000,
+      "uses": [
+        {"id": "matrix_u_initial", "type": "input"},
+        {"id": "matrix_v_interim", "type": "output"}
+      ]
+    },
+    {
+      "id": "all_row_sweeps",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 650000000000000,
+      "memory": 800000000,
+      "uses": [
+        {"id": "matrix_v_interim", "type": "input"},
+        {"id": "matrix_u_final", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_u_final",
+      "file_writes": [
+        {"id": "matrix_u_final"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_u_initial", "size": 800000000},
+    {"id": "matrix_v_interim", "size": 800000000},
+    {"id": "matrix_u_final", "size": 800000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_u_initial"], "children": ["all_column_sweeps"]},
+    {"parents": ["all_column_sweeps"], "children": ["all_row_sweeps"]},
+    {"parents": ["all_row_sweeps"], "children": ["write_u_final"]}
+  ]
+}

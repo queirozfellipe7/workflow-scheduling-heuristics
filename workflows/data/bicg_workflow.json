@@ -1,0 +1,73 @@
+{
+  "name": "bicg_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_A",
+      "file_reads": [
+        {"id": "matrix_A"}
+      ]
+    },
+    {
+      "id": "read_p",
+      "file_reads": [
+        {"id": "vector_p"}
+      ]
+    },
+    {
+      "id": "read_r",
+      "file_reads": [
+        {"id": "vector_r"}
+      ]
+    },
+    {
+      "id": "compute_s",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 798000000,
+      "memory": 152000,
+      "uses": [
+        {"id": "matrix_A", "type": "input"},
+        {"id": "vector_r", "type": "input"},
+        {"id": "vector_s", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_q",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 798000000,
+      "memory": 168000,
+      "uses": [
+        {"id": "matrix_A", "type": "input"},
+        {"id": "vector_p", "type": "input"},
+        {"id": "vector_q", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_s",
+      "file_writes": [
+        {"id": "vector_s"}
+      ]
+    },
+    {
+      "id": "write_q",
+      "file_writes": [
+        {"id": "vector_q"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A", "size": 3192000000},
+    {"id": "vector_p", "size": 152000},
+    {"id": "vector_r", "size": 168000},
+    {"id": "vector_s", "size": 152000},
+    {"id": "vector_q", "size": 168000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A"], "children": ["compute_s", "compute_q"]},
+    {"parents": ["read_r"], "children": ["compute_s"]},
+    {"parents": ["read_p"], "children": ["compute_q"]},
+    {"parents": ["compute_s"], "children": ["write_s"]},
+    {"parents": ["compute_q"], "children": ["write_q"]}
+  ]
+}

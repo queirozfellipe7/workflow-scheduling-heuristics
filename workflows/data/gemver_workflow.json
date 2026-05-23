@@ -1,0 +1,64 @@
+{
+  "name": "gemver_workflow_x10",
+  "jobs": [
+    { "id": "read_A_in", "file_reads": [{"id": "matrix_A_in"}] },
+    { "id": "read_u1", "file_reads": [{"id": "vector_u1"}] },
+    { "id": "read_v1", "file_reads": [{"id": "vector_v1"}] },
+    { "id": "read_u2", "file_reads": [{"id": "vector_u2"}] },
+    { "id": "read_v2", "file_reads": [{"id": "vector_v2"}] },
+    { "id": "read_y", "file_reads": [{"id": "vector_y"}] },
+    { "id": "read_z", "file_reads": [{"id": "vector_z"}] },
+    {
+      "id": "compute_A",
+      "runtime": 0, "cores": 12, "flops": 1600000000, "memory": 3200000000,
+      "uses": [
+        {"id": "matrix_A_in", "type": "input"}, {"id": "vector_u1", "type": "input"},
+        {"id": "vector_v1", "type": "input"}, {"id": "vector_u2", "type": "input"},
+        {"id": "vector_v2", "type": "input"}, {"id": "matrix_A_mid", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_x1",
+      "runtime": 0, "cores": 12, "flops": 1200000000, "memory": 160000,
+      "uses": [
+        {"id": "matrix_A_mid", "type": "input"}, {"id": "vector_y", "type": "input"},
+        {"id": "vector_x1", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_x2",
+      "runtime": 0, "cores": 12, "flops": 20000, "memory": 160000,
+      "uses": [
+        {"id": "vector_x1", "type": "input"}, {"id": "vector_z", "type": "input"},
+        {"id": "vector_x2", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_w",
+      "runtime": 0, "cores": 12, "flops": 1200000000, "memory": 160000,
+      "uses": [
+        {"id": "matrix_A_mid", "type": "input"}, {"id": "vector_x2", "type": "input"},
+        {"id": "vector_w", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_w",
+      "file_writes": [{"id": "vector_w"}]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A_in", "size": 3200000000}, {"id": "matrix_A_mid", "size": 3200000000},
+    {"id": "vector_u1", "size": 160000}, {"id": "vector_v1", "size": 160000},
+    {"id": "vector_u2", "size": 160000}, {"id": "vector_v2", "size": 160000},
+    {"id": "vector_y", "size": 160000}, {"id": "vector_z", "size": 160000},
+    {"id": "vector_x1", "size": 160000}, {"id": "vector_x2", "size": 160000},
+    {"id": "vector_w", "size": 160000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A_in", "read_u1", "read_v1", "read_u2", "read_v2"], "children": ["compute_A"]},
+    {"parents": ["compute_A", "read_y"], "children": ["compute_x1"]},
+    {"parents": ["compute_x1", "read_z"], "children": ["compute_x2"]},
+    {"parents": ["compute_A", "compute_x2"], "children": ["compute_w"]},
+    {"parents": ["compute_w"], "children": ["write_w"]}
+  ]
+}

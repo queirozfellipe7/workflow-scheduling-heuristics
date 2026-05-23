@@ -1,0 +1,63 @@
+{
+  "name": "covariance_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_data_in",
+      "file_reads": [
+        {"id": "data_in"}
+      ]
+    },
+    {
+      "id": "compute_mean",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 120000000,
+      "memory": 96000,
+      "uses": [
+        {"id": "data_in", "type": "input"},
+        {"id": "mean_vec", "type": "output"}
+      ]
+    },
+    {
+      "id": "center_data",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 120000000,
+      "memory": 960000000,
+      "uses": [
+        {"id": "data_in", "type": "input"},
+        {"id": "mean_vec", "type": "input"},
+        {"id": "data_centered", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_cov",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 1440000000000000,
+      "memory": 1152000000,
+      "uses": [
+        {"id": "data_centered", "type": "input"},
+        {"id": "cov_matrix", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_cov",
+      "file_writes": [
+        {"id": "cov_matrix"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "data_in", "size": 960000000},
+    {"id": "data_centered", "size": 960000000},
+    {"id": "mean_vec", "size": 96000},
+    {"id": "cov_matrix", "size": 1152000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_data_in"], "children": ["compute_mean", "center_data"]},
+    {"parents": ["compute_mean"], "children": ["center_data"]},
+    {"parents": ["center_data"], "children": ["compute_cov"]},
+    {"parents": ["compute_cov"], "children": ["write_cov"]}
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "gramschmidt_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_A_in",
+      "file_reads": [
+        {"id": "matrix_A_in"}
+      ]
+    },
+    {
+      "id": "compute_gramschmidt",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 2880000000000000,
+      "memory": 960000000,
+      "uses": [
+        {"id": "matrix_A_in", "type": "input"},
+        {"id": "matrix_A_out", "type": "output"},
+        {"id": "matrix_Q", "type": "output"},
+        {"id": "matrix_R", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_A",
+      "file_writes": [
+        {"id": "matrix_A_out"}
+      ]
+    },
+    {
+      "id": "write_Q",
+      "file_writes": [
+        {"id": "matrix_Q"}
+      ]
+    },
+    {
+      "id": "write_R",
+      "file_writes": [
+        {"id": "matrix_R"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A_in", "size": 960000000},
+    {"id": "matrix_A_out", "size": 960000000},
+    {"id": "matrix_Q", "size": 960000000},
+    {"id": "matrix_R", "size": 1152000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A_in"], "children": ["compute_gramschmidt"]},
+    {"parents": ["compute_gramschmidt"], "children": ["write_A", "write_Q", "write_R"]}
+  ]
+}

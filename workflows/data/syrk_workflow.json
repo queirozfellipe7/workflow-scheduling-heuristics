@@ -1,0 +1,44 @@
+{
+  "name": "syrk_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_A",
+      "file_reads": [
+        {"id": "matrix_A"}
+      ]
+    },
+    {
+      "id": "read_C_in",
+      "file_reads": [
+        {"id": "matrix_C_in"}
+      ]
+    },
+    {
+      "id": "compute_C",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 1800180000000000,
+      "memory": 800000000,
+      "uses": [
+        {"id": "matrix_A", "type": "input"},
+        {"id": "matrix_C_in", "type": "input"},
+        {"id": "matrix_C_out", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_C",
+      "file_writes": [
+        {"id": "matrix_C_out"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A", "size": 960000000},
+    {"id": "matrix_C_in", "size": 800000000},
+    {"id": "matrix_C_out", "size": 800000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A", "read_C_in"], "children": ["compute_C"]},
+    {"parents": ["compute_C"], "children": ["write_C"]}
+  ]
+}

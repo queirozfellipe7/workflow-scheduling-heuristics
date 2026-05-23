@@ -1,0 +1,36 @@
+{
+  "name": "nussinov_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_sequence",
+      "file_reads": [
+        {"id": "sequence"}
+      ]
+    },
+    {
+      "id": "compute_nussinov",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 166666666667,
+      "memory": 800000000,
+      "uses": [
+        {"id": "sequence", "type": "input"},
+        {"id": "score_table", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_table",
+      "file_writes": [
+        {"id": "score_table"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "sequence", "size": 10000},
+    {"id": "score_table", "size": 800000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_sequence"], "children": ["compute_nussinov"]},
+    {"parents": ["compute_nussinov"], "children": ["write_table"]}
+  ]
+}

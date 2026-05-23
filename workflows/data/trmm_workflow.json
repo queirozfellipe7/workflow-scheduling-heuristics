@@ -1,0 +1,44 @@
+{
+  "name": "trmm_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_A",
+      "file_reads": [
+        {"id": "matrix_A"}
+      ]
+    },
+    {
+      "id": "read_B_in",
+      "file_reads": [
+        {"id": "matrix_B_in"}
+      ]
+    },
+    {
+      "id": "compute_B",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 1200000000000000,
+      "memory": 960000000,
+      "uses": [
+        {"id": "matrix_A", "type": "input"},
+        {"id": "matrix_B_in", "type": "input"},
+        {"id": "matrix_B_out", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_B",
+      "file_writes": [
+        {"id": "matrix_B_out"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A", "size": 800000000},
+    {"id": "matrix_B_in", "size": 960000000},
+    {"id": "matrix_B_out", "size": 960000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A", "read_B_in"], "children": ["compute_B"]},
+    {"parents": ["compute_B"], "children": ["write_B"]}
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "name": "mvt_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_A",
+      "file_reads": [
+        {"id": "matrix_A"}
+      ]
+    },
+    {
+      "id": "read_y1",
+      "file_reads": [
+        {"id": "vector_y1"}
+      ]
+    },
+    {
+      "id": "read_y2",
+      "file_reads": [
+        {"id": "vector_y2"}
+      ]
+    },
+    {
+      "id": "read_x1_in",
+      "file_reads": [
+        {"id": "vector_x1_in"}
+      ]
+    },
+    {
+      "id": "read_x2_in",
+      "file_reads": [
+        {"id": "vector_x2_in"}
+      ]
+    },
+    {
+      "id": "compute_x1",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 800000000,
+      "memory": 160000,
+      "uses": [
+        {"id": "matrix_A", "type": "input"},
+        {"id": "vector_y1", "type": "input"},
+        {"id": "vector_x1_in", "type": "input"},
+        {"id": "vector_x1_out", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_x2",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 800000000,
+      "memory": 160000,
+      "uses": [
+        {"id": "matrix_A", "type": "input"},
+        {"id": "vector_y2", "type": "input"},
+        {"id": "vector_x2_in", "type": "input"},
+        {"id": "vector_x2_out", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_x1",
+      "file_writes": [
+        {"id": "vector_x1_out"}
+      ]
+    },
+    {
+      "id": "write_x2",
+      "file_writes": [
+        {"id": "vector_x2_out"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A", "size": 3200000000},
+    {"id": "vector_y1", "size": 160000},
+    {"id": "vector_y2", "size": 160000},
+    {"id": "vector_x1_in", "size": 160000},
+    {"id": "vector_x2_in", "size": 160000},
+    {"id": "vector_x1_out", "size": 160000},
+    {"id": "vector_x2_out", "size": 160000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A", "read_y1", "read_x1_in"], "children": ["compute_x1"]},
+    {"parents": ["read_A", "read_y2", "read_x2_in"], "children": ["compute_x2"]},
+    {"parents": ["compute_x1"], "children": ["write_x1"]},
+    {"parents": ["compute_x2"], "children": ["write_x2"]}
+  ]
+}

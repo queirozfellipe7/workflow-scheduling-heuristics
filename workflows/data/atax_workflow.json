@@ -1,0 +1,89 @@
+{
+  "name": "atax_workflow",
+  "jobs": [
+    {
+      "id": "read_a",
+      "file_reads": [
+        {"id": "matrix_a"}
+      ]
+    },
+    {
+      "id": "read_x",
+      "file_reads": [
+        {"id": "vector_x"}
+      ]
+    },
+    {
+      "id": "compute_tmp1",
+      "runtime": 0,
+      "cores": 6,
+      "flops": 16000000000,
+      "memory": 128096000000,
+      "uses": [
+        {"id": "matrix_a", "type": "input"},
+        {"id": "vector_x", "type": "input"},
+        {"id": "vector_tmp", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_tmp2",
+      "runtime": 0,
+      "cores": 6,
+      "flops": 16000000000,
+      "memory": 128096000000,
+      "uses": [
+        {"id": "matrix_a", "type": "input"},
+        {"id": "vector_x", "type": "input"},
+        {"id": "vector_tmp", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_y1",
+      "runtime": 0,
+      "cores": 6,
+      "flops": 16000000000,
+      "memory": 128096000000,
+      "uses": [
+        {"id": "matrix_a", "type": "input"},
+        {"id": "vector_tmp", "type": "input"},
+        {"id": "vector_y", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_y2",
+      "runtime": 0,
+      "cores": 6,
+      "flops": 16000000000,
+      "memory": 128096000000,
+      "uses": [
+        {"id": "matrix_a", "type": "input"},
+        {"id": "vector_tmp", "type": "input"},
+        {"id": "vector_y", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_y",
+      "file_writes": [
+        {"id": "vector_y"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_a", "size": 128000000000},
+    {"id": "vector_x", "size": 32000000},
+    {"id": "vector_tmp", "size": 32000000},
+    {"id": "vector_y", "size": 32000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_a"], "children": ["compute_tmp1"]},
+    {"parents": ["read_a"], "children": ["compute_tmp2"]},
+    {"parents": ["read_x"], "children": ["compute_tmp1"]},
+    {"parents": ["read_x"], "children": ["compute_tmp2"]},
+    {"parents": ["compute_tmp1"], "children": ["compute_y1"]},
+    {"parents": ["compute_tmp1"], "children": ["compute_y2"]},
+    {"parents": ["compute_tmp2"], "children": ["compute_y1"]},
+    {"parents": ["compute_tmp2"], "children": ["compute_y2"]},
+    {"parents": ["compute_y1"], "children": ["write_y"]},
+    {"parents": ["compute_y2"], "children": ["write_y"]}
+  ]
+}

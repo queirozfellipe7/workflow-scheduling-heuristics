@@ -1,0 +1,17 @@
+simulators/*/build/
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/Makefile
+**/*.o
+**/*.o.d
+**/*.a
+**/*.so
+**/my-wrench-simulator
+**/a.out
+**/tmp/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db

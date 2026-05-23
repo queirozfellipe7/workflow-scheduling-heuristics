@@ -1,0 +1,36 @@
+{
+  "name": "durbin_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_r",
+      "file_reads": [
+        {"id": "vector_r"}
+      ]
+    },
+    {
+      "id": "compute_durbin",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 200000000,
+      "memory": 80000,
+      "uses": [
+        {"id": "vector_r", "type": "input"},
+        {"id": "vector_y", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_y",
+      "file_writes": [
+        {"id": "vector_y"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "vector_r", "size": 80000},
+    {"id": "vector_y", "size": 80000}
+  ],
+  "dependencies": [
+    {"parents": ["read_r"], "children": ["compute_durbin"]},
+    {"parents": ["compute_durbin"], "children": ["write_y"]}
+  ]
+}

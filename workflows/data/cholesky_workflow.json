@@ -1,0 +1,36 @@
+{
+  "name": "cholesky_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_A_in",
+      "file_reads": [
+        {"id": "matrix_A_in"}
+      ]
+    },
+    {
+      "id": "compute_cholesky",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 333333333333,
+      "memory": 800000000,
+      "uses": [
+        {"id": "matrix_A_in", "type": "input"},
+        {"id": "matrix_A_out", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_A_out",
+      "file_writes": [
+        {"id": "matrix_A_out"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A_in", "size": 800000000},
+    {"id": "matrix_A_out", "size": 800000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A_in"], "children": ["compute_cholesky"]},
+    {"parents": ["compute_cholesky"], "children": ["write_A_out"]}
+  ]
+}

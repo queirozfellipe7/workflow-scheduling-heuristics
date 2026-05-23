@@ -1,0 +1,36 @@
+{
+  "name": "floyd-warshall_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_path_in",
+      "file_reads": [
+        {"id": "matrix_path_in"}
+      ]
+    },
+    {
+      "id": "compute_floyd_warshall",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 1000000000000,
+      "memory": 800000000,
+      "uses": [
+        {"id": "matrix_path_in", "type": "input"},
+        {"id": "matrix_path_out", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_path_out",
+      "file_writes": [
+        {"id": "matrix_path_out"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_path_in", "size": 800000000},
+    {"id": "matrix_path_out", "size": 800000000}
+  ],
+  "dependencies": [
+    {"parents": ["read_path_in"], "children": ["compute_floyd_warshall"]},
+    {"parents": ["compute_floyd_warshall"], "children": ["write_path_out"]}
+  ]
+}

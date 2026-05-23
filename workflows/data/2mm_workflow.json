@@ -1,0 +1,67 @@
+{
+  "name": "2mm_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_a",
+      "file_reads": [
+        {"id": "matrix_a"}
+      ]
+    },
+    {
+      "id": "read_b",
+      "file_reads": [
+        {"id": "matrix_b"}
+      ]
+    },
+    {
+      "id": "read_c",
+      "file_reads": [
+        {"id": "matrix_c"}
+      ]
+    },
+    {
+      "id": "compute_d",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 42949672960000,
+      "memory": 209715200000,
+      "uses": [
+        {"id": "matrix_a", "type": "input"},
+        {"id": "matrix_b", "type": "input"},
+        {"id": "matrix_d", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_e",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 42949672960000,
+      "memory": 209715200000,
+      "uses": [
+        {"id": "matrix_d", "type": "input"},
+        {"id": "matrix_c", "type": "input"},
+        {"id": "matrix_e", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_e",
+      "file_writes": [
+        {"id": "matrix_e"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_a", "size": 41943040000},
+    {"id": "matrix_b", "size": 41943040000},
+    {"id": "matrix_c", "size": 41943040000},
+    {"id": "matrix_d", "size": 41943040000},
+    {"id": "matrix_e", "size": 41943040000}
+  ],
+  "dependencies": [
+    {"parents": ["read_a"], "children": ["compute_d"]},
+    {"parents": ["read_b"], "children": ["compute_d"]},
+    {"parents": ["read_c"], "children": ["compute_e"]},
+    {"parents": ["compute_d"], "children": ["compute_e"]},
+    {"parents": ["compute_e"], "children": ["write_e"]}
+  ]
+}

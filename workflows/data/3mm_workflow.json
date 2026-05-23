@@ -1,0 +1,89 @@
+{
+  "name": "3mm_workflow",
+  "jobs": [
+    {
+      "id": "read_a",
+      "file_reads": [
+        {"id": "matrix_a"}
+      ]
+    },
+    {
+      "id": "read_b",
+      "file_reads": [
+        {"id": "matrix_b"}
+      ]
+    },
+    {
+      "id": "read_c",
+      "file_reads": [
+        {"id": "matrix_c"}
+      ]
+    },
+    {
+      "id": "read_d",
+      "file_reads": [
+        {"id": "matrix_d"}
+      ]
+    },
+    {
+      "id": "compute_e",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 2147483648000,
+      "memory": 29360128000,
+      "uses": [
+        {"id": "matrix_a", "type": "input"},
+        {"id": "matrix_b", "type": "input"},
+        {"id": "matrix_e", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_f",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 2147483648000,
+      "memory": 29360128000,
+      "uses": [
+        {"id": "matrix_c", "type": "input"},
+        {"id": "matrix_d", "type": "input"},
+        {"id": "matrix_f", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_g",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 2147483648000,
+      "memory": 29360128000,
+      "uses": [
+        {"id": "matrix_e", "type": "input"},
+        {"id": "matrix_f", "type": "input"},
+        {"id": "matrix_g", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_g",
+      "file_writes": [
+        {"id": "matrix_g"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_a", "size": 4194304000},
+    {"id": "matrix_b", "size": 4194304000},
+    {"id": "matrix_c", "size": 4194304000},
+    {"id": "matrix_d", "size": 4194304000},
+    {"id": "matrix_e", "size": 4194304000},
+    {"id": "matrix_f", "size": 4194304000},
+    {"id": "matrix_g", "size": 4194304000}
+  ],
+  "dependencies": [
+    {"parents": ["read_a"], "children": ["compute_e"]},
+    {"parents": ["read_b"], "children": ["compute_e"]},
+    {"parents": ["read_c"], "children": ["compute_f"]},
+    {"parents": ["read_d"], "children": ["compute_f"]},
+    {"parents": ["compute_e"], "children": ["compute_g"]},
+    {"parents": ["compute_f"], "children": ["compute_g"]},
+    {"parents": ["compute_g"], "children": ["write_g"]}
+  ]
+}

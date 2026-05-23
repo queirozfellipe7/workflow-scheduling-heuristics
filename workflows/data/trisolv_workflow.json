@@ -1,0 +1,44 @@
+{
+  "name": "trisolv_workflow_x10",
+  "jobs": [
+    {
+      "id": "read_L",
+      "file_reads": [
+        {"id": "matrix_L"}
+      ]
+    },
+    {
+      "id": "read_b",
+      "file_reads": [
+        {"id": "vector_b"}
+      ]
+    },
+    {
+      "id": "compute_solve",
+      "runtime": 0,
+      "cores": 12,
+      "flops": 100000000,
+      "memory": 80000,
+      "uses": [
+        {"id": "matrix_L", "type": "input"},
+        {"id": "vector_b", "type": "input"},
+        {"id": "vector_x", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_x",
+      "file_writes": [
+        {"id": "vector_x"}
+      ]
+    }
+  ],
+  "files": [
+    {"id": "matrix_L", "size": 800000000},
+    {"id": "vector_b", "size": 80000},
+    {"id": "vector_x", "size": 80000}
+  ],
+  "dependencies": [
+    {"parents": ["read_L", "read_b"], "children": ["compute_solve"]},
+    {"parents": ["compute_solve"], "children": ["write_x"]}
+  ]
+}

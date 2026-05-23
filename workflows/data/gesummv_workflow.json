@@ -1,0 +1,53 @@
+{
+  "name": "gesummv_workflow_x10",
+  "jobs": [
+    { "id": "read_A", "file_reads": [{"id": "matrix_A"}] },
+    { "id": "read_B", "file_reads": [{"id": "matrix_B"}] },
+    { "id": "read_x", "file_reads": [{"id": "vector_x"}] },
+    {
+      "id": "compute_tmp",
+      "runtime": 0, "cores": 12, "flops": 338000000, "memory": 104000,
+      "uses": [
+        {"id": "matrix_A", "type": "input"},
+        {"id": "vector_x", "type": "input"},
+        {"id": "vector_tmp", "type": "output"}
+      ]
+    },
+    {
+      "id": "compute_y_interim",
+      "runtime": 0, "cores": 12, "flops": 338000000, "memory": 104000,
+      "uses": [
+        {"id": "matrix_B", "type": "input"},
+        {"id": "vector_x", "type": "input"},
+        {"id": "vector_y_interim", "type": "output"}
+      ]
+    },
+    {
+      "id": "combine_y",
+      "runtime": 0, "cores": 12, "flops": 39000, "memory": 104000,
+      "uses": [
+        {"id": "vector_tmp", "type": "input"},
+        {"id": "vector_y_interim", "type": "input"},
+        {"id": "vector_y_final", "type": "output"}
+      ]
+    },
+    {
+      "id": "write_y",
+      "file_writes": [{"id": "vector_y_final"}]
+    }
+  ],
+  "files": [
+    {"id": "matrix_A", "size": 1352000000},
+    {"id": "matrix_B", "size": 1352000000},
+    {"id": "vector_x", "size": 104000},
+    {"id": "vector_tmp", "size": 104000},
+    {"id": "vector_y_interim", "size": 104000},
+    {"id": "vector_y_final", "size": 104000}
+  ],
+  "dependencies": [
+    {"parents": ["read_A", "read_x"], "children": ["compute_tmp"]},
+    {"parents": ["read_B", "read_x"], "children": ["compute_y_interim"]},
+    {"parents": ["compute_tmp", "compute_y_interim"], "children": ["combine_y"]},
+    {"parents": ["combine_y"], "children": ["write_y"]}
+  ]
+}

@@ -1,0 +1,87 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "https://simgrid.org/simgrid.dtd">
+<platform version="4.1">
+    <zone id="AS0" routing="Dijkstra">
+
+        <!-- ================================================== -->
+        <!-- HOSTS: 1 CPU Principal (DGX_System ) + 8 GPUs       -->
+        <!-- ================================================== -->
+
+        <!-- Host Principal: Representa o chassi, CPUs AMD EPYC, 1TB RAM, etc. -->
+        <host id="DGX_System" speed="34000Gf" core="128">
+            <!-- Propriedades de Energia e Carbono -->
+            <prop id="wattage_per_state" value="1100.0:3300.0" />
+            <prop id="wattage_off" value="25" />
+            <prop id="carbon_intensity" value="473" />
+            <!-- Disco de alta velocidade -->
+            <disk id="nvme_storage" read_bw="25GBps" write_bw="12GBps">
+                <prop id="size" value="15000GiB"/>
+                <prop id="mount" value="/"/>
+            </disk>
+        </host>
+
+   
+        <host id="GPU1" speed="67000Gf" core="1">
+            <prop id="wattage_per_state" value="50.0:700.0" />
+            <prop id="wattage_off" value="0" />
+            <prop id="carbon_intensity" value="473" />
+        </host>
+        <host id="GPU2" speed="67000Gf" core="1">
+            <prop id="wattage_per_state" value="50.0:700.0" />
+            <prop id="wattage_off" value="0" />
+            <prop id="carbon_intensity" value="473" />
+        </host>
+        <host id="GPU3" speed="67000Gf" core="1">
+            <prop id="wattage_per_state" value="50.0:700.0" />
+            <prop id="wattage_off" value="0" />
+            <prop id="carbon_intensity" value="473" />
+        </host>
+        <host id="GPU4" speed="67000Gf" core="1">
+            <prop id="wattage_per_state" value="50.0:700.0" />
+            <prop id="wattage_off" value="0" />
+            <prop id="carbon_intensity" value="473" />
+        </host>
+        <host id="GPU5" speed="19500Gf" core="1">
+            <prop id="wattage_per_state" value="50.0:400.0" />
+            <prop id="wattage_off" value="0" />
+            <prop id="carbon_intensity" value="473" />
+        </host>
+        <host id="GPU6" speed="19500Gf" core="1">
+            <prop id="wattage_per_state" value="50.0:400.0" />
+            <prop id="wattage_off" value="0" />
+            <prop id="carbon_intensity" value="473" />
+        </host>
+        <host id="GPU7" speed="19500Gf" core="1">
+            <prop id="wattage_per_state" value="50.0:400.0" />
+            <prop id="wattage_off" value="0" />
+            <prop id="carbon_intensity" value="473" />
+        </host>
+        <host id="GPU8" speed="19500Gf" core="1">
+            <prop id="wattage_per_state" value="50.0:400.0" />
+            <prop id="wattage_off" value="0" />
+            <prop id="carbon_intensity" value="473" />
+        </host>
+
+        <!-- ================================================== -->
+        <!-- LINKS E ROTAS                                      -->
+        <!-- ================================================== -->
+
+        <!-- Link de altíssima velocidade para simular o NVSwitch/PCIe Gen4 -->
+        <link id="internal_fabric" bandwidth="300GBps" latency="2us"/>
+
+        <!-- Rotas que conectam a CPU principal a CADA UMA das 8 GPUs -->
+        <route src="DGX_System" dst="GPU1"><link_ctn id="internal_fabric"/></route>
+        <route src="DGX_System" dst="GPU2"><link_ctn id="internal_fabric"/></route>
+        <route src="DGX_System" dst="GPU3"><link_ctn id="internal_fabric"/></route>
+        <route src="DGX_System" dst="GPU4"><link_ctn id="internal_fabric"/></route>
+        <route src="DGX_System" dst="GPU5"><link_ctn id="internal_fabric"/></route>
+        <route src="DGX_System" dst="GPU6"><link_ctn id="internal_fabric"/></route>
+        <route src="DGX_System" dst="GPU7"><link_ctn id="internal_fabric"/></route>
+        <route src="DGX_System" dst="GPU8"><link_ctn id="internal_fabric"/></route>
+
+        <!-- Para comunicação GPU-GPU, definimos rotas explícitas passando pela CPU.
+             O SimGrid calculará o caminho (ex: GPU1 -> DGX_System -> GPU2) usando o link 'internal_fabric'.
+             Não é necessário definir todas as combinações, pois o 'routing="Dijkstra"' pode inferir.
+             Mas definir as rotas da CPU para as GPUs é a parte crucial. -->
+    </zone>
+</platform>
